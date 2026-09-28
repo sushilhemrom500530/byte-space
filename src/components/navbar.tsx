@@ -39,7 +39,7 @@ export default function Navbar({ className = "" }: INavbarProps) {
                             width={154}
                             height={33}
                             priority
-                            className="h-7 sm:h-8 w-auto transition-transform duration-200 group-hover:scale-[1.02]"
+                            className="h-7 sm:h-8 w-auto"
                         />
                     </Link>
                 </div>

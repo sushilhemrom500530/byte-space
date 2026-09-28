@@ -7,3 +7,13 @@ export interface INavItem {
     title: string;
     path: string;
 }
+
+export interface IFooterLink {
+    title: string;
+    path: string;
+}
+
+export interface IFooterColumn {
+    id: number;
+    links: IFooterLink[];
+}
