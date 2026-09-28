@@ -5,6 +5,8 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import HeaderLogo from "@/assets/Header_Logo.svg";
 import { INavbarProps } from "@/types";
+import { navItems, authItems } from "@/data";
+import { HiOutlineShoppingBag, HiOutlineBars3, HiOutlineXMark } from "react-icons/hi2";
 
 export default function Navbar({ className = "" }: INavbarProps) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -42,84 +44,43 @@ export default function Navbar({ className = "" }: INavbarProps) {
                     </Link>
                 </div>
 
-                {/* Center: Navigation Links (Desktop) */}
                 <div className="hidden md:flex items-center gap-8 lg:gap-10 text-[15px] font-medium text-white/90">
-                    <Link
-                        href="/"
-                        className="hover:text-white transition-colors duration-150"
-                    >
-                        Home
-                    </Link>
-                    <Link
-                        href="/courses"
-                        className="hover:text-white transition-colors duration-150"
-                    >
-                        Courses
-                    </Link>
-                    <Link
-                        href="/creators"
-                        className="hover:text-white transition-colors duration-150"
-                    >
-                        Creators
-                    </Link>
+                    {navItems.map((item) => (
+                        <Link
+                            key={item.id || item.path}
+                            href={item.path}
+                            className="hover:text-white transition-colors duration-150"
+                        >
+                            {item.title}
+                        </Link>
+                    ))}
                 </div>
-
-                {/* Right: Auth & Cart (Desktop & Mobile) */}
                 <div className="flex items-center gap-6 sm:gap-7 text-[15px] font-medium text-white/90">
-                    <Link
-                        href="/auth/sign-in"
-                        className="hidden sm:inline-block hover:text-white transition-colors duration-150"
-                    >
-                        Sign In
-                    </Link>
-                    <Link
-                        href="/auth/join-us"
-                        className="hidden sm:inline-block hover:text-white transition-colors duration-150"
-                    >
-                        Join Us
-                    </Link>
+                    {authItems.map((item) => (
+                        <Link
+                            key={item.id || item.path}
+                            href={item.path}
+                            className="hidden sm:inline-block hover:text-white transition-colors duration-150"
+                        >
+                            {item.title}
+                        </Link>
+                    ))}
                     <Link
                         href="/cart"
                         aria-label="Cart"
                         className="text-white hover:text-white/80 transition-colors p-1 flex items-center"
                     >
-                        <svg
-                            width="20"
-                            height="20"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="stroke-white"
-                        >
-                            <path
-                                d="M16 8V6a4 4 0 0 0-8 0v2"
-                                stroke="currentColor"
-                                strokeWidth="1.8"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                            <rect
-                                x="4.5"
-                                y="8"
-                                width="15"
-                                height="13"
-                                rx="2"
-                                stroke="currentColor"
-                                strokeWidth="1.8"
-                            />
-                        </svg>
+                        <HiOutlineShoppingBag className="w-5 h-5 stroke-[1.8]" />
                     </Link>
 
                     {/* Mobile Menu Button */}
                     <button
                         type="button"
                         onClick={() => setMobileMenuOpen(true)}
-                        className="md:hidden text-white p-2 -mr-2 rounded-lg hover:bg-white/10 focus:outline-none transition-colors"
+                        className="md:hidden text-white p-2 -mr-2 rounded-full hover:bg-white/10 focus:outline-none transition-colors cursor-pointer"
                         aria-label="Open navigation menu"
                     >
-                        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
+                        <HiOutlineBars3 className="w-6 h-6" />
                     </button>
                 </div>
             </div>
@@ -139,7 +100,6 @@ export default function Navbar({ className = "" }: INavbarProps) {
                 aria-label="Mobile navigation"
             >
                 <div className="flex flex-col">
-                    {/* Drawer Header */}
                     <div className="flex items-center justify-between pb-6 border-b border-white/10">
                         <Link
                             href="/"
@@ -157,62 +117,34 @@ export default function Navbar({ className = "" }: INavbarProps) {
                         <button
                             type="button"
                             onClick={() => setMobileMenuOpen(false)}
-                            className="text-white/80 hover:text-white p-2 -mr-2 rounded-lg hover:bg-white/10 transition-colors"
+                            className="text-white/80 hover:text-white p-2 -mr-2 rounded-full hover:bg-white/10 transition-colors cursor-pointer"
                             aria-label="Close menu"
                         >
-                            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                            </svg>
+                            <HiOutlineXMark className="w-6 h-6" />
                         </button>
                     </div>
 
-                    {/* Navigation Links */}
                     <nav className="flex flex-col gap-1 py-6">
-                        <Link
-                            href="/"
-                            onClick={() => setMobileMenuOpen(false)}
-                            className="px-4 py-3 rounded-lg text-base font-medium text-white/90 hover:text-secondary hover:bg-white/5 transition-all"
-                        >
-                            Home
-                        </Link>
-                        <Link
-                            href="/courses"
-                            onClick={() => setMobileMenuOpen(false)}
-                            className="px-4 py-3 rounded-lg text-base font-medium text-white/90 hover:text-secondary hover:bg-white/5 transition-all"
-                        >
-                            Courses
-                        </Link>
-                        <Link
-                            href="/creators"
-                            onClick={() => setMobileMenuOpen(false)}
-                            className="px-4 py-3 rounded-lg text-base font-medium text-white/90 hover:text-secondary hover:bg-white/5 transition-all"
-                        >
-                            Creators
-                        </Link>
+                        {navItems.map((item) => (
+                            <Link
+                                key={item.id || item.path}
+                                href={item.path}
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="px-4 py-3 rounded-lg text-base font-medium text-white/90 hover:text-secondary hover:bg-white/5 transition-all"
+                            >
+                                {item.title}
+                            </Link>
+                        ))}
                         <Link
                             href="/cart"
                             onClick={() => setMobileMenuOpen(false)}
                             className="flex items-center gap-3 px-4 py-3 rounded-lg text-base font-medium text-white/90 hover:text-secondary hover:bg-white/5 transition-all"
                         >
-                            <svg
-                                width="18"
-                                height="18"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="1.8"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            >
-                                <path d="M16 8V6a4 4 0 0 0-8 0v2" />
-                                <rect x="4.5" y="8" width="15" height="13" rx="2" />
-                            </svg>
+                            <HiOutlineShoppingBag className="w-5 h-5 stroke-[1.8]" />
                             <span>Cart</span>
                         </Link>
                     </nav>
                 </div>
-
-                {/* Drawer Footer Actions */}
                 <div className="pt-6 border-t border-white/10 flex flex-col gap-3">
                     <Link
                         href="/auth/sign-in"
