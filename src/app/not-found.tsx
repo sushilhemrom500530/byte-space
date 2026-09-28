@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/navbar";
 import not_found_image from "@/assets/404.png";
+import Footer from "@/components/footer";
 
 export default function NotFound() {
     return (
@@ -33,7 +34,7 @@ export default function NotFound() {
 
                         <Link
                             href="/"
-                            className="mt-6 sm:mt-7 inline-flex items-center justify-center rounded-full bg-secondary px-7 py-2.5 sm:px-8 sm:py-3 text-xs sm:text-sm font-semibold text-[#111111] hover:brightness-95 hover:scale-[1.03] active:scale-[0.98] transition-all duration-150 shadow-sm"
+                            className="mt-6 sm:mt-7 inline-flex items-center justify-center rounded-full bg-secondary px-7 py-2.5 sm:px-8 sm:py-3 text-xs sm:text-sm font-semibold text-[#111111] hover:bg-secondary/80 [transition:0.3s]"
                         >
                             Back to Home
                         </Link>
@@ -43,6 +44,8 @@ export default function NotFound() {
 
             {/* Bottom Spacer to balance Navbar vertically */}
             <div className="h-[71px] pointer-events-none" aria-hidden="true" />
+
+            <Footer />
         </div>
     );
 }
