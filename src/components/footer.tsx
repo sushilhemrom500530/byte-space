@@ -22,19 +22,20 @@ export default function Footer() {
     return (
         <footer className="w-full bg-white text-[#242528] pt-14 sm:pt-16 pb-8 border-t border-neutral-100">
             <div className="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-[71px]">
-                <div className="flex flex-col lg:flex-row justify-between gap-12 lg:gap-16">
-                    <div className="flex flex-col max-w-md">
-                        <Link href="/" className="inline-block group">
-                            <Image
-                                src={FooterLogo}
-                                alt="ByteSpace"
-                                width={171}
-                                height={37}
-                                className="h-11 sm:h-12 w-auto"
-                            />
-                        </Link>
-
-                        <p className="mt-4 text-[#52525B] text-sm leading-relaxed max-w-sm">
+                <div className="mb-6 sm:mb-8">
+                    <Link href="/" className="inline-block group">
+                        <Image
+                            src={FooterLogo}
+                            alt="ByteSpace"
+                            width={171}
+                            height={37}
+                            className="h-8 sm:h-9 w-auto"
+                        />
+                    </Link>
+                </div>
+                <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-16">
+                    <div className="flex flex-col max-w-md w-full">
+                        <p className="text-[#52525B] text-sm leading-relaxed max-w-sm">
                             Stay Up to date with our latest features and releases by joining our newsletter.
                         </p>
 
@@ -69,15 +70,14 @@ export default function Footer() {
                             and consent to receive updates from our company.
                         </p>
                     </div>
-
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-12 lg:gap-16 pt-2">
+                    <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-14 lg:gap-20 text-center sm:text-left">
                         {footerNavColumns.map((column) => (
-                            <div key={column.id} className="flex flex-col space-y-3.5">
+                            <div key={column.id} className="flex flex-col items-center sm:items-start space-y-4">
                                 {column.links.map((link) => (
                                     <Link
                                         key={link.title}
                                         href={link.path}
-                                        className="text-sm text-[#242528] hover:text-primary transition-colors duration-150"
+                                        className="text-sm text-[#242528] hover:text-primary transition-colors duration-150 sm:whitespace-nowrap"
                                     >
                                         {link.title}
                                     </Link>

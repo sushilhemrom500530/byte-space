@@ -21,7 +21,7 @@ export default function NotFound() {
                         />
                     </div>
 
-                    <div className="relative flex flex-col items-center text-center mt-20 sm:-mt-28 md:-mt-36 lg:-mt-10">
+                    <div className="relative flex flex-col items-center text-center -mt-4 md:-mt-10">
                         <h1 className="text-3xl sm:text-5xl md:text-[56px] lg:text-[62px] font-bold text-white tracking-tight leading-[1.08] sm:leading-[1.12]">
                             The page you are looking
                             <br />

@@ -11,17 +11,24 @@ import { HiOutlineShoppingBag, HiOutlineBars3, HiOutlineXMark } from "react-icon
 export default function Navbar({ className = "" }: INavbarProps) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-    // Prevent body scroll and handle ESC key when mobile drawer is open
+    // Prevent body scroll and handle ESC key & window resize when mobile drawer is open
     useEffect(() => {
         if (mobileMenuOpen) {
             document.body.style.overflow = "hidden";
             const handleKeyDown = (e: KeyboardEvent) => {
                 if (e.key === "Escape") setMobileMenuOpen(false);
             };
+            const handleResize = () => {
+                if (window.innerWidth >= 768) {
+                    setMobileMenuOpen(false);
+                }
+            };
             window.addEventListener("keydown", handleKeyDown);
+            window.addEventListener("resize", handleResize);
             return () => {
                 document.body.style.overflow = "";
                 window.removeEventListener("keydown", handleKeyDown);
+                window.removeEventListener("resize", handleResize);
             };
         } else {
             document.body.style.overflow = "";
@@ -85,7 +92,6 @@ export default function Navbar({ className = "" }: INavbarProps) {
                 </div>
             </div>
 
-            {/* Mobile Drawer Backdrop */}
             <div
                 className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-50 md:hidden transition-opacity duration-300 ${mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
                     }`}
@@ -93,14 +99,14 @@ export default function Navbar({ className = "" }: INavbarProps) {
                 aria-hidden="true"
             />
 
-            {/* Mobile Drawer Panel */}
+
             <aside
-                className={`fixed top-0 right-0 bottom-0 w-[290px] sm:w-[320px] max-w-[85vw] bg-primary border-l border-white/10 z-50 md:hidden shadow-2xl flex flex-col justify-between p-6 transform transition-transform duration-300 ease-in-out ${mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+                className={`fixed top-0 right-0 bottom-0 w-[290px] sm:w-[320px] max-w-[85vw] h-full max-h-screen bg-primary border-l border-white/10 z-50 md:hidden shadow-2xl flex flex-col justify-between p-6 overflow-y-auto overflow-x-hidden transform transition-transform duration-300 ease-in-out ${mobileMenuOpen ? "translate-x-0" : "translate-x-full"
                     }`}
                 aria-label="Mobile navigation"
             >
-                <div className="flex flex-col">
-                    <div className="flex items-center justify-between pb-6 border-b border-white/10">
+                <div className="flex flex-col flex-1 shrink-0">
+                    <div className="flex items-center justify-between pb-5 border-b border-white/10 shrink-0">
                         <Link
                             href="/"
                             onClick={() => setMobileMenuOpen(false)}
@@ -123,8 +129,7 @@ export default function Navbar({ className = "" }: INavbarProps) {
                             <HiOutlineXMark className="w-6 h-6" />
                         </button>
                     </div>
-
-                    <nav className="flex flex-col gap-1 py-6">
+                    <nav className="flex flex-col gap-1 py-4 sm:py-6">
                         {navItems.map((item) => (
                             <Link
                                 key={item.id || item.path}
@@ -145,7 +150,7 @@ export default function Navbar({ className = "" }: INavbarProps) {
                         </Link>
                     </nav>
                 </div>
-                <div className="pt-6 border-t border-white/10 flex flex-col gap-3">
+                <div className="pt-4 pb-2 sm:pb-4 border-t border-white/10 flex flex-col gap-3 shrink-0 mt-auto">
                     <Link
                         href="/auth/sign-in"
                         onClick={() => setMobileMenuOpen(false)}
