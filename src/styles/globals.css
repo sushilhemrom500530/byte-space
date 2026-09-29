@@ -44,3 +44,7 @@ body {
     linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
   background-size: 71px 71px;
 }
+
+.custom-container{
+  @apply max-w-[1440px] mx-auto px-4 md:px-8 lg:px-14 xl:px-40;
+}
