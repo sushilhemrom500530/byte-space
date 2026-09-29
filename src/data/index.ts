@@ -1,5 +1,16 @@
 import { INavItem, IFooterColumn, IFooterLink } from "@/types";
 
+import coursesJson from "./courses.json";
+import learnFigmaImg from "@/assets/skills/learn-figma.png";
+import bigDataImg from "@/assets/skills/big-data.png";
+import digitalAssetsImg from "@/assets/skills/digital-assets.png";
+import student1 from "@/assets/avatars/student-1.png";
+import student2 from "@/assets/avatars/student-2.png";
+import student3 from "@/assets/avatars/student-3.png";
+import student4 from "@/assets/avatars/student-4.png";
+import { ICourseCard } from "@/types";
+
+
 export const navItems: INavItem[] = [
     {
         id: 1,
@@ -41,27 +52,27 @@ export const footerNavColumns: IFooterColumn[] = [
             {
                 id: 1,
                 title: "Featured Courses",
-                path: "/courses"
+                path: "#courses"
             },
             {
                 id: 2,
                 title: "Featured Categories",
-                path: "/categories"
+                path: "#categories"
             },
             {
                 id: 3,
                 title: "Business",
-                path: "/categories/business"
+                path: "#categories/business"
             },
             {
                 id: 4,
                 title: "IT",
-                path: "/categories/it"
+                path: "#categories/it"
             },
             {
                 id: 5,
                 title: "Design",
-                path: "/categories/design"
+                path: "#categories/design"
             },
         ],
     },
@@ -71,27 +82,27 @@ export const footerNavColumns: IFooterColumn[] = [
             {
                 id: 1,
                 title: "Development",
-                path: "/categories/development"
+                path: "#categories/development"
             },
             {
                 id: 2,
                 title: "Marketing",
-                path: "/categories/marketing"
+                path: "#categories/marketing"
             },
             {
                 id: 3,
                 title: "Photography",
-                path: "/categories/photography"
+                path: "#categories/photography"
             },
             {
                 id: 4,
                 title: "Finance",
-                path: "/categories/finance"
+                path: "#categories/finance"
             },
             {
                 id: 5,
                 title: "Sport",
-                path: "/categories/sport"
+                path: "#categories/sport"
             },
         ],
     },
@@ -101,27 +112,27 @@ export const footerNavColumns: IFooterColumn[] = [
             {
                 id: 1,
                 title: "Become a Creator",
-                path: "/creators"
+                path: "#creators"
             },
             {
                 id: 2,
                 title: "Affiliate Program",
-                path: "/affiliate"
+                path: "#affiliate"
             },
             {
                 id: 3,
                 title: "Contact",
-                path: "/contact"
+                path: "#contact"
             },
             {
                 id: 4,
                 title: "Help",
-                path: "/help"
+                path: "#help"
             },
             {
                 id: 5,
                 title: "About",
-                path: "/about"
+                path: "#about"
             },
         ],
     },
@@ -131,16 +142,78 @@ export const footerBottomLinks: IFooterLink[] = [
     {
         id: 1,
         title: "Privacy Policy",
-        path: "/privacy-policy"
+        path: "#privacy-policy"
     },
     {
         id: 2,
         title: "Terms of Service",
-        path: "/terms-of-service"
+        path: "#terms-of-service"
     },
     {
         id: 3,
         title: "Cookies Settings",
-        path: "/cookies-settings"
+        path: "#cookies-settings"
     },
 ];
+
+
+export const defaultCourseAvatars = [student1, student2, student3, student4];
+
+export const coursesData: ICourseCard[] = [
+    {
+        id: 1,
+        title: "Learn Figma from Basic",
+        author: "purepearl studio",
+        authorPrefix: "by",
+        authorUrl: "/creators/purepearl-studio",
+        rating: 4.5,
+        level: "Beginner",
+        studentsCount: "26+",
+        avatars: [student1, student2, student3, student4],
+        price: 25,
+        priceSuffix: "/lifetime",
+        lessons: "17 Lessons",
+        duration: "2 hours 16 mins",
+        comments: "59 Comments",
+        image: learnFigmaImg,
+        url: "/courses/learn-figma-from-basic",
+    },
+    {
+        id: 2,
+        title: "Big Data Analytics Mastery",
+        author: "purepearl studio",
+        authorPrefix: "by",
+        authorUrl: "/creators/purepearl-studio",
+        rating: 4.8,
+        level: "Beginner",
+        studentsCount: "32+",
+        avatars: [student1, student2, student3, student4],
+        price: 30,
+        priceSuffix: "/lifetime",
+        lessons: "14 Lessons",
+        duration: "2 hours 10 mins",
+        comments: "45 Comments",
+        image: bigDataImg,
+        url: "/courses/big-data-mastery",
+    },
+    {
+        id: 3,
+        title: "Digital Assets & Crypto Trading",
+        author: "purepearl studio",
+        authorPrefix: "by",
+        authorUrl: "/creators/purepearl-studio",
+        rating: 4.7,
+        level: "Beginner",
+        studentsCount: "19+",
+        avatars: [student1, student2, student3, student4],
+        price: 28,
+        priceSuffix: "/lifetime",
+        lessons: "18 Lessons",
+        duration: "3 hours 12 mins",
+        comments: "60 Comments",
+        image: digitalAssetsImg,
+    },
+];
+
+export { coursesJson };
+

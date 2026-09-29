@@ -1,3 +1,5 @@
+import type { StaticImageData } from "next/image";
+
 export interface INavbarProps {
     className?: string;
 }
@@ -28,4 +30,27 @@ export interface IAuthLayoutProps {
 export interface ILoginFormInputs {
     email: string;
     password: string;
+}
+
+
+export interface ICourseCard {
+    id?: string | number;
+    title: string;
+    author: string;
+    authorPrefix?: string;
+    authorUrl?: string;
+    rating?: number | string;
+    level?: string;
+    studentsCount?: string | number;
+    avatars?: (string | StaticImageData)[];
+    price: number | string;
+    priceSuffix?: string;
+    image: string | StaticImageData;
+    imageAlt?: string;
+    tags?: string[];
+    lessons?: string | number;
+    duration?: string;
+    comments?: string | number;
+    url?: string;
+    className?: string;
 }
