@@ -42,7 +42,7 @@ body {
   background-image:
     linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-  background-size: 71px 71px;
+  background-size: 100px 100px;
 }
 
 .custom-container{

@@ -1,28 +1,36 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import FormField from "@/components/form";
+
+interface IRegisterFormInputs {
+    fullName: string;
+    email: string;
+    password: string;
+}
 
 export default function Register() {
-    const [fullName, setFullName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isSubmitting },
+    } = useForm<IRegisterFormInputs>({
+        mode: "onTouched",
+    });
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        console.log("Register submission:", { fullName, email, password });
+    const onSubmit = async (data: IRegisterFormInputs) => {
+        console.log("Register submission:", data);
+        // Form submission API logic
     };
 
     return (
         <div className="w-full flex-1 flex flex-col justify-between select-none">
-            {/* Top Section */}
             <div>
-                {/* Header Tag */}
                 <span className="text-xs sm:text-[13px] font-medium text-primary block mb-2 sm:mb-2.5">
                     Create an Account
                 </span>
 
-                {/* Main Heading */}
                 <h2 className="text-2xl sm:text-[28px] font-bold text-[#242528] tracking-tight leading-[1.12] mb-6 sm:mb-7">
                     Welcome to
                     <br />
@@ -30,71 +38,63 @@ export default function Register() {
                 </h2>
 
                 {/* Form Inputs */}
-                <form onSubmit={handleSubmit} className="flex flex-col">
-                    {/* Full Name Field */}
-                    <div className="mb-4 sm:mb-4.5">
-                        <label
-                            htmlFor="register-fullname"
-                            className="block text-[11px] sm:text-xs font-medium text-[#242528] mb-1.5"
-                        >
-                            Full Name
-                        </label>
-                        <input
-                            id="register-fullname"
-                            type="text"
-                            value={fullName}
-                            onChange={(e) => setFullName(e.target.value)}
-                            placeholder="Jamie Davis"
-                            required
-                            className="w-full h-10 sm:h-[42px] px-3.5 rounded-[10px] border border-[#E5E7EB] text-xs sm:text-sm text-[#242528] placeholder-[#A1A4AA] bg-white focus:outline-none focus:border-primary transition-colors"
-                        />
-                    </div>
+                <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col">
+                    <FormField
+                        label="Full Name"
+                        type="text"
+                        name="fullName"
+                        placeholder="Jamie Davis"
+                        register={register("fullName", {
+                            required: "Full name is required",
+                            minLength: {
+                                value: 2,
+                                message: "Full name must be at least 2 characters",
+                            },
+                        })}
+                        error={errors.fullName}
+                        containerClassName="mb-4 sm:mb-4.5"
+                    />
 
-                    {/* Email Field */}
-                    <div className="mb-4 sm:mb-4.5">
-                        <label
-                            htmlFor="register-email"
-                            className="block text-[11px] sm:text-xs font-medium text-[#242528] mb-1.5"
-                        >
-                            Email
-                        </label>
-                        <input
-                            id="register-email"
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="designer@example.com"
-                            required
-                            className="w-full h-10 sm:h-[42px] px-3.5 rounded-[10px] border border-[#E5E7EB] text-xs sm:text-sm text-[#242528] placeholder-[#A1A4AA] bg-white focus:outline-none focus:border-primary transition-colors"
-                        />
-                    </div>
+                    <FormField
+                        label="Email"
+                        type="email"
+                        name="email"
+                        placeholder="designer@example.com"
+                        register={register("email", {
+                            required: "Email is required",
+                            pattern: {
+                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                message: "Please enter a valid email address",
+                            },
+                        })}
+                        error={errors.email}
+                        containerClassName="mb-4 sm:mb-4.5"
+                    />
 
-                    {/* Password Field */}
-                    <div className="mb-4 sm:mb-5">
-                        <label
-                            htmlFor="register-password"
-                            className="block text-[11px] sm:text-xs font-medium text-[#242528] mb-1.5"
-                        >
-                            Password
-                        </label>
-                        <input
-                            id="register-password"
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder="••••••••"
-                            required
-                            className="w-full h-10 sm:h-[42px] px-3.5 rounded-[10px] border border-[#E5E7EB] text-xs sm:text-sm text-[#242528] placeholder-[#A1A4AA] bg-white focus:outline-none focus:border-primary tracking-widest transition-colors"
-                        />
-                    </div>
+                    <FormField
+                        label="Password"
+                        type="password"
+                        name="password"
+                        placeholder="••••••••"
+                        register={register("password", {
+                            required: "Password is required",
+                            minLength: {
+                                value: 6,
+                                message: "Password must be at least 6 characters",
+                            },
+                        })}
+                        error={errors.password}
+                        containerClassName="mb-4 sm:mb-5"
+                    />
 
                     {/* Action Button */}
                     <div className="flex justify-end">
                         <button
                             type="submit"
-                            className="h-8 sm:h-9 px-6 sm:px-6.5 rounded-full bg-secondary text-[#111111] font-semibold text-xs sm:text-[13px] hover:brightness-95 active:scale-95 transition-all shadow-none cursor-pointer whitespace-nowrap"
+                            disabled={isSubmitting}
+                            className="h-8 sm:h-9 px-6 sm:px-6.5 rounded-full bg-secondary text-[#111111] font-semibold text-xs sm:text-[13px] hover:brightness-95 active:scale-95 transition-all shadow-none cursor-pointer whitespace-nowrap disabled:opacity-60"
                         >
-                            Continue
+                            {isSubmitting ? "Submitting..." : "Continue"}
                         </button>
                     </div>
                 </form>

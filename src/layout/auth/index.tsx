@@ -29,9 +29,9 @@ export default function AuthLayout({
     const displayDescription = description || defaultDescription;
 
     return (
-        <div className="min-h-screen w-full relative flex flex-col justify-between bg-primary-grid overflow-x-hidden py-4 selection:bg-secondary selection:text-black">
+        <div className="min-h-screen w-full relative flex flex-col justify-between bg-primary-grid overflow-x-hidden selection:bg-secondary selection:text-black pb-10">
             <div className="custom-container w-full flex-1 flex flex-col justify-between">
-                <div className="w-full z-20 mb-6 sm:mb-8 lg:mb-10">
+                <div className="w-full z-20 py-8">
                     <Link
                         href="/"
                         className="inline-flex items-center w-fit"
@@ -48,19 +48,19 @@ export default function AuthLayout({
                     </Link>
                 </div>
 
-                <main className="flex-1 flex justify-center py-2 sm:py-4 lg:py-6 z-10">
-                    <div className="w-full flex flex-col md:flex-row lg:items-stretch items-center lg:items-start justify-between gap-8 lg:gap-14">
+                <main className="flex-1 flex justify-center z-10">
+                    <div className="w-full flex flex-col md:flex-row lg:items-stretch items-center lg:items-start justify-between gap-6 lg:gap-14">
                         <div className="w-full lg:w-[548px] flex flex-col justify-between items-center lg:items-start text-center lg:text-left pt-0">
                             <div className="mb-6 sm:mb-8 lg:mb-12">
-                                <h1 className="text-2xl sm:text-3xl lg:text-[34px] font-bold text-white tracking-tight leading-snug md:text-start text-center">
+                                <h1 className="text-xl md:text-2xl font-bold text-white tracking-tight leading-snug text-start">
                                     {displayTitle}
                                 </h1>
-                                <p className="mt-3 text-xs sm:text-sm text-white/80 leading-relaxed md:text-start text-center">
+                                <p className="mt-3 text-xs sm:text-sm text-white/80 leading-relaxed text-start">
                                     {displayDescription}
                                 </p>
                             </div>
 
-                            <div className="hidden md:block w-full max-w-[548px] select-none pointer-events-none">
+                            <div className="hidden md:block w-full max-w-[548px] max-h-[585px] select-none pointer-events-none">
                                 <Image
                                     src={AuthImage}
                                     alt="ByteSpace Illustration"
@@ -73,7 +73,7 @@ export default function AuthLayout({
                         </div>
 
                         <div className="w-full lg:w-[579px] flex justify-center lg:justify-end self-stretch">
-                            <div className="w-full max-w-[579px] h-full bg-white rounded-[24px] sm:rounded-[36px] shadow-2xl p-6 sm:p-10 lg:p-12 text-[#242528] relative z-10 flex flex-col justify-between">
+                            <div className="w-full max-w-[579px] h-full bg-white rounded-[24px] shadow-2xl p-6 sm:p-10 lg:p-12 text-[#242528] relative z-10 flex flex-col justify-between">
                                 {children}
                             </div>
                         </div>
