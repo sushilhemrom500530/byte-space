@@ -10,6 +10,37 @@ import { HiOutlineShoppingBag, HiOutlineBars3, HiOutlineXMark } from "react-icon
 
 export default function Navbar({ className = "" }: INavbarProps) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
+    const [isAtTop, setIsAtTop] = useState(true);
+
+    // Scroll listener: transparent at top, hide on scroll down, show on scroll up
+    useEffect(() => {
+        let lastScrollY = window.scrollY;
+
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+
+            // Near top of the page
+            if (currentScrollY <= 15) {
+                setIsAtTop(true);
+                setIsVisible(true);
+            } else {
+                setIsAtTop(false);
+                // Scrolling down -> hide navbar
+                if (currentScrollY > lastScrollY && currentScrollY > 80) {
+                    setIsVisible(false);
+                } else if (currentScrollY < lastScrollY) {
+                    // Scrolling up / toward top -> reveal navbar
+                    setIsVisible(true);
+                }
+            }
+
+            lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
+        };
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     // Prevent body scroll and handle ESC key & window resize when mobile drawer is open
     useEffect(() => {
@@ -35,8 +66,18 @@ export default function Navbar({ className = "" }: INavbarProps) {
         }
     }, [mobileMenuOpen]);
 
+    const navBackground = isAtTop
+        ? "bg-transparent"
+        : "bg-primary/95 backdrop-blur-md shadow-md";
+
+    const navTransform = isVisible || mobileMenuOpen
+        ? "translate-y-0"
+        : "-translate-y-full";
+
     return (
-        <nav className={`w-full z-50 ${className}`}>
+        <nav
+            className={`w-full fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${navBackground} ${navTransform} ${className}`}
+        >
             <div className="h-[100px] px-6 sm:px-10 lg:px-[71px] flex items-center justify-between">
                 <div className="flex items-center">
                     <Link href="/" className="flex items-center group">
