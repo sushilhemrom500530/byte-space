@@ -9,6 +9,7 @@ export interface INavItem {
 }
 
 export interface IFooterLink {
+    id?: string | number;
     title: string;
     path: string;
 }

@@ -34,8 +34,7 @@ export default function AuthLayout({
     const displayDescription = description || defaultDescription;
 
     return (
-        <div className="min-h-screen w-full relative flex flex-col justify-between bg-primary bg-grid-pattern overflow-x-hidden p-6 sm:p-10 lg:p-14 selection:bg-secondary selection:text-black">
-            {/* Top Brand Logo */}
+        <div className="min-h-screen w-full relative flex flex-col justify-between bg-primary bg-grid-pattern overflow-x-hidden p-6 sm:p-10 lg:p-14 selection:bg-secondary selection:text-black"> 
             <div className="w-full max-w-[1360px] mx-auto z-20">
                 <Link
                     href="/"
@@ -52,11 +51,10 @@ export default function AuthLayout({
                     />
                 </Link>
             </div>
-
-            {/* Main Content Layout */}
+ 
             <main className="flex-1 flex items-center justify-center py-8 lg:py-12 z-10">
                 <div className="w-full max-w-[1360px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-                    {/* Left Column: Title, Subtitle, & Stacked 3D Illustration */}
+                    {/* Title, Subtitle, & Stacked 3D Illustration */}
                     <div className="lg:col-span-7 flex flex-col items-start justify-center">
                         <div className="max-w-lg mb-8 sm:mb-10 lg:mb-12">
                             <h1 className="text-2xl sm:text-3xl lg:text-[34px] font-bold text-white tracking-tight leading-snug">
@@ -66,10 +64,8 @@ export default function AuthLayout({
                                 {displayDescription}
                             </p>
                         </div>
-
-                        {/* Stacked 3D Graphic Composition */}
-                        <div className="relative w-full max-w-[420px] sm:max-w-[460px] h-[360px] sm:h-[400px] select-none pointer-events-none mx-auto lg:mx-0">
-                            {/* Back Card: Digital Assets */}
+ 
+                        <div className="relative w-full max-w-[420px] sm:max-w-[460px] h-[360px] sm:h-[400px] select-none pointer-events-none mx-auto lg:mx-0"> 
                             <div className="absolute left-[-15px] sm:left-[-30px] top-[45px] sm:top-[55px] w-[240px] sm:w-[280px] z-0 drop-shadow-xl">
                                 <Image
                                     src={DigitalAssetsCard}
@@ -80,7 +76,7 @@ export default function AuthLayout({
                                 />
                             </div>
 
-                            {/* Main Center Card: The Power of Big Data */}
+                            {/* The Power of Big Data */}
                             <div className="absolute left-[45px] sm:left-[65px] top-0 w-[240px] sm:w-[280px] z-10 drop-shadow-2xl">
                                 <Image
                                     src={BigDataCard}
@@ -91,8 +87,7 @@ export default function AuthLayout({
                                     className="w-full h-auto object-contain"
                                 />
                             </div>
-
-                            {/* Yellow Torus / Zero (Top Left) */}
+ 
                             <div className="absolute left-[15px] sm:left-[22px] top-[15px] sm:top-[20px] w-[65px] sm:w-[78px] z-20 drop-shadow-lg">
                                 <Image
                                     src={YellowZero}
@@ -102,8 +97,7 @@ export default function AuthLayout({
                                     className="w-full h-auto object-contain"
                                 />
                             </div>
-
-                            {/* White Zigzag Ribbon (Right Edge) */}
+ 
                             <div className="absolute right-[30px] sm:right-[40px] top-[180px] sm:top-[200px] w-[75px] sm:w-[90px] z-20 drop-shadow-lg">
                                 <Image
                                     src={WhiteArrow}
@@ -113,8 +107,7 @@ export default function AuthLayout({
                                     className="w-full h-auto object-contain"
                                 />
                             </div>
-
-                            {/* Happy Students Badge (Bottom Center-Right) */}
+ 
                             <div className="absolute left-[105px] sm:left-[130px] bottom-[25px] sm:bottom-[30px] w-[165px] sm:w-[195px] z-20 drop-shadow-xl">
                                 <Image
                                     src={HappyStudentsBadge}
@@ -124,8 +117,7 @@ export default function AuthLayout({
                                     className="w-full h-auto object-contain"
                                 />
                             </div>
-
-                            {/* Yellow Pyramid / Triangle (Bottom Left) */}
+ 
                             <div className="absolute left-[-25px] sm:left-[-35px] bottom-[0px] sm:bottom-[10px] w-[85px] sm:w-[100px] z-20 drop-shadow-xl">
                                 <Image
                                     src={YellowTriangle}
@@ -138,7 +130,7 @@ export default function AuthLayout({
                         </div>
                     </div>
 
-                    {/* Right Column: White Card Container for Children */}
+                    {/* Children */}
                     <div className="lg:col-span-5 flex justify-center lg:justify-end w-full">
                         <div className="w-full max-w-[460px] sm:max-w-[490px] bg-white rounded-[28px] sm:rounded-[36px] shadow-2xl p-7 sm:p-10 lg:p-12 text-[#242528] relative z-10">
                             {children}
