@@ -34,7 +34,7 @@ export default function AuthLayout({
     const displayDescription = description || defaultDescription;
 
     return (
-        <div className="min-h-screen w-full relative flex flex-col justify-between bg-primary bg-grid-pattern overflow-x-hidden p-6 sm:p-10 lg:p-14 selection:bg-secondary selection:text-black"> 
+        <div className="min-h-screen w-full relative flex flex-col justify-between bg-primary-grid overflow-x-hidden p-6 sm:p-10 lg:p-14 selection:bg-secondary selection:text-black"> 
             <div className="w-full max-w-[1360px] mx-auto z-20">
                 <Link
                     href="/"
@@ -132,7 +132,7 @@ export default function AuthLayout({
 
                     {/* Children */}
                     <div className="lg:col-span-5 flex justify-center lg:justify-end w-full">
-                        <div className="w-full max-w-[460px] sm:max-w-[490px] bg-white rounded-[28px] sm:rounded-[36px] shadow-2xl p-7 sm:p-10 lg:p-12 text-[#242528] relative z-10">
+                        <div className="w-full max-w-[368px] min-h-[498px] bg-white rounded-[26px] shadow-2xl px-8 sm:px-9 pt-10 sm:pt-11 pb-7 sm:pb-8 text-[#242528] relative z-10 flex flex-col justify-between">
                             {children}
                         </div>
                     </div>
