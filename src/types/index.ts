@@ -17,3 +17,9 @@ export interface IFooterColumn {
     id: number;
     links: IFooterLink[];
 }
+
+export interface IAuthLayoutProps {
+    children: React.ReactNode;
+    title?: string;
+    description?: string;
+}
