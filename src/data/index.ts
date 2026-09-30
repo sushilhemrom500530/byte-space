@@ -276,3 +276,43 @@ export const coursesData: ICourseCard[] = [
 
 export { coursesJson };
 
+
+
+export const sortOptions = [
+    {
+        id: "relevant", label: "Most relevant"
+    },
+    {
+        id: "popular", label: "Most popular"
+    },
+    {
+        id: "rating", label: "Highest rated"
+    },
+    {
+        id: "price-asc", label: "Price: Low to High"
+    },
+    {
+        id: "price-desc", label: "Price: High to Low"
+    },
+] as const;
+
+export type SortType = (typeof sortOptions)[number]["id"];
+
+export const levelOptions = [
+    { id: null, label: "All Levels" },
+    { id: "Beginner", label: "Beginner" },
+    { id: "Intermediate", label: "Intermediate" },
+    { id: "Advanced", label: "Advanced" },
+];
+
+export const categoryOptions = [
+    { id: null, label: "All Categories" },
+    { id: "UI/UX Design", label: "UI/UX Design" },
+    { id: "Marketing", label: "Marketing" },
+    { id: "Social Media", label: "Social Media" },
+    { id: "Drawing & Painting", label: "Drawing & Painting" },
+    { id: "Creative Marketing", label: "Creative Marketing" },
+    { id: "Animation", label: "Animation" },
+    { id: "Music", label: "Music" },
+    { id: "Cooking", label: "Cooking" },
+];
