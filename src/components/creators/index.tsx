@@ -94,9 +94,7 @@ export default function Creators() {
             {/* Courses / Products Section with Filter Bar */}
             <div className="w-full bg-[#FFFFFF] py-10 sm:py-14">
                 <div className="custom-container">
-                    {/* Filter & Sort Bar */}
                     <div className="flex flex-wrap items-center justify-between gap-4 mb-8 sm:mb-10">
-                        {/* Left Filter Options */}
                         <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
                             <button
                                 type="button"
@@ -150,6 +148,7 @@ export default function Creators() {
                     </div>
                 </div>
             </div>
+            <div className="h-[1px] w-full bg-gray-200" />
         </section>
     );
 }
