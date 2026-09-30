@@ -129,9 +129,9 @@ export default function ReviewsTab() {
                     <button
                         type="button"
                         onClick={() => setSelectedStarFilter(null)}
-                        className={`px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${selectedStarFilter === null
-                            ? "bg-secondary text-black shadow-xs"
-                            : "border border-neutral-200 text-neutral-700 hover:bg-neutral-50"
+                        className={`px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all cursor-pointer border border-neutral-200 ${selectedStarFilter === null
+                            ? "bg-secondary text-black"
+                            : "text-neutral-700 hover:bg-neutral-50"
                             }`}
                     >
                         All rating
@@ -142,9 +142,9 @@ export default function ReviewsTab() {
                             key={star}
                             type="button"
                             onClick={() => setSelectedStarFilter(selectedStarFilter === star ? null : star)}
-                            className={`px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium flex items-center gap-1 transition-all cursor-pointer ${selectedStarFilter === star
-                                ? "bg-secondary text-black font-semibold shadow-xs"
-                                : "border border-neutral-200 text-neutral-700 hover:bg-neutral-50"
+                            className={`px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium flex items-center gap-1 transition-all cursor-pointer border border-neutral-200 ${selectedStarFilter === star
+                                ? "bg-secondary text-black font-medium"
+                                : "border-neutral-200 text-neutral-700 hover:bg-neutral-50"
                                 }`}
                         >
                             <span>★</span>
