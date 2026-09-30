@@ -23,3 +23,8 @@ export interface ICoursesFilterProps {
     courses?: ICourseCard[];
     children?: React.ReactNode;
 }
+
+
+export interface ICourseViewPageProps {
+    params: Promise<{ courseId: string }>;
+}

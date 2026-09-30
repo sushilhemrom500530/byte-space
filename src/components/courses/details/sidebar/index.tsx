@@ -4,16 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import alexImg from "@/assets/users/alex.png";
 import { FiFolder, FiVideo, FiAward, FiMessageSquare } from "react-icons/fi";
-
-interface ICourseSidebarProps {
-    price: number | string;
-    priceSuffix?: string;
-    totalLessons?: string | number;
-    duration?: string;
-    creatorName?: string;
-    creatorRole?: string;
-    creatorUrl?: string;
-}
+import { ICourseSidebarProps } from "@/components/courses/details/interface";
 
 const previewLessons = [
     { number: "01", title: "Introduction to Digital Assets", duration: "12 mins" },

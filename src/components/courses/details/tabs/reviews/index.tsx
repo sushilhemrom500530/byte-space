@@ -67,7 +67,6 @@ export default function ReviewsTab() {
 
     return (
         <div className="w-full pt-6 sm:pt-8 text-neutral-800">
-            {/* What Learners Are Saying Header */}
             <section>
                 <h3 className="text-xl sm:text-2xl font-bold text-neutral-900 tracking-tight">
                     What Learners Are Saying
@@ -79,9 +78,9 @@ export default function ReviewsTab() {
                 </p>
             </section>
 
-            {/* Ratings Overview Card */}
+            {/* rating overview */}
             <div className="mt-6 border border-neutral-200 rounded-[20px] p-5 sm:p-7 bg-white flex flex-col sm:flex-row items-center gap-6 sm:gap-8 max-w-2xl shadow-2xs">
-                {/* Big Rating Badge */}
+
                 <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-[18px] bg-secondary flex flex-col items-center justify-center shrink-0 shadow-xs">
                     <span className="text-xs sm:text-[13px] font-semibold text-neutral-700 tracking-wider">
                         Ratings
@@ -91,11 +90,9 @@ export default function ReviewsTab() {
                     </span>
                 </div>
 
-                {/* Rating Distribution Rows */}
                 <div className="flex-1 w-full space-y-2">
                     {breakdownData.map((item) => (
                         <div key={item.stars} className="flex items-center gap-3 text-xs sm:text-sm">
-                            {/* Bar Track */}
                             <div className="flex-1 h-2 bg-neutral-100 rounded-full overflow-hidden">
                                 <div
                                     className="h-full bg-secondary rounded-full"
@@ -103,7 +100,6 @@ export default function ReviewsTab() {
                                 />
                             </div>
 
-                            {/* 5 Stars representation */}
                             <div className="flex items-center gap-0.5 text-neutral-700 shrink-0">
                                 {Array.from({ length: 5 }).map((_, i) => (
                                     <svg
@@ -116,7 +112,6 @@ export default function ReviewsTab() {
                                 ))}
                             </div>
 
-                            {/* Count */}
                             <span className="w-8 text-right font-medium text-neutral-600 text-xs">
                                 {item.count}
                             </span>
@@ -125,22 +120,19 @@ export default function ReviewsTab() {
                 </div>
             </div>
 
-            {/* Individual Reviews Section */}
             <section className="mt-9 sm:mt-11">
                 <h4 className="text-base sm:text-lg font-bold text-neutral-900 mb-4">
                     Individual Reviews:
                 </h4>
 
-                {/* Rating Filter Pills */}
                 <div className="flex items-center gap-2 sm:gap-2.5 flex-wrap mb-6">
                     <button
                         type="button"
                         onClick={() => setSelectedStarFilter(null)}
-                        className={`px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
-                            selectedStarFilter === null
-                                ? "bg-secondary text-black shadow-xs"
-                                : "border border-neutral-200 text-neutral-700 hover:bg-neutral-50"
-                        }`}
+                        className={`px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${selectedStarFilter === null
+                            ? "bg-secondary text-black shadow-xs"
+                            : "border border-neutral-200 text-neutral-700 hover:bg-neutral-50"
+                            }`}
                     >
                         All rating
                     </button>
@@ -150,11 +142,10 @@ export default function ReviewsTab() {
                             key={star}
                             type="button"
                             onClick={() => setSelectedStarFilter(selectedStarFilter === star ? null : star)}
-                            className={`px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium flex items-center gap-1 transition-all cursor-pointer ${
-                                selectedStarFilter === star
-                                    ? "bg-secondary text-black font-semibold shadow-xs"
-                                    : "border border-neutral-200 text-neutral-700 hover:bg-neutral-50"
-                            }`}
+                            className={`px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium flex items-center gap-1 transition-all cursor-pointer ${selectedStarFilter === star
+                                ? "bg-secondary text-black font-semibold shadow-xs"
+                                : "border border-neutral-200 text-neutral-700 hover:bg-neutral-50"
+                                }`}
                         >
                             <span>★</span>
                             <span>{star}</span>
@@ -162,14 +153,13 @@ export default function ReviewsTab() {
                     ))}
                 </div>
 
-                {/* Reviews Cards List */}
+                {/* cards */}
                 <div className="space-y-4">
                     {filteredReviews.map((review) => (
                         <div
                             key={review.id}
                             className="border border-neutral-200 rounded-[20px] p-5 sm:p-6 bg-white hover:border-neutral-300 transition-colors shadow-2xs"
                         >
-                            {/* Author Row */}
                             <div className="flex items-center justify-between gap-3">
                                 <div className="flex items-center gap-3">
                                     <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full overflow-hidden relative shrink-0">
@@ -195,7 +185,6 @@ export default function ReviewsTab() {
                                 </span>
                             </div>
 
-                            {/* Stars */}
                             <div className="flex items-center gap-1 my-3 text-neutral-800">
                                 {Array.from({ length: review.rating }).map((_, i) => (
                                     <svg
@@ -208,7 +197,6 @@ export default function ReviewsTab() {
                                 ))}
                             </div>
 
-                            {/* Comment */}
                             <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-normal">
                                 &quot;{review.comment}&quot;
                             </p>

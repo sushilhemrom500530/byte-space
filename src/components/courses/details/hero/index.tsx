@@ -6,17 +6,8 @@ import BannerUserImg from "@/assets/Banner-User.png";
 import { FiShare2, FiBarChart2, FiPlay } from "react-icons/fi";
 import { HiOutlineUserGroup } from "react-icons/hi2";
 import { useState } from "react";
+import { ICourseHeroProps } from "@/components/courses/details/interface";
 
-interface ICourseHeroProps {
-    title: string;
-    subtitle?: string;
-    author: string;
-    authorUrl?: string;
-    level: string;
-    rating: number;
-    reviewsCount?: number;
-    studentsCount: string | number;
-}
 
 export default function CourseHero({
     title,

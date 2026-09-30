@@ -29,3 +29,25 @@ export interface ICourseExtendedDetails extends ICourseCard {
     modules?: ICourseModule[];
     reviewsList?: IReviewItem[];
 }
+
+export interface ICourseHeroProps {
+    title: string;
+    subtitle?: string;
+    author: string;
+    authorUrl?: string;
+    level: string;
+    rating: number;
+    reviewsCount?: number;
+    studentsCount: string | number;
+}
+
+
+export interface ICourseSidebarProps {
+    price: number | string;
+    priceSuffix?: string;
+    totalLessons?: string | number;
+    duration?: string;
+    creatorName?: string;
+    creatorRole?: string;
+    creatorUrl?: string;
+}
