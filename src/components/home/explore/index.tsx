@@ -56,7 +56,7 @@ export default function ExploreSection() {
                     {categories.map((category) => (
                         <div
                             key={category.id}
-                            className="w-full aspect-square flex flex-col items-center justify-center p-3 sm:p-4 bg-white rounded-[18px] sm:rounded-[24px] border border-[#DADCDE] cursor-pointer select-none group"
+                            className="w-full aspect-square flex flex-col items-center justify-center p-3 sm:p-4 bg-white rounded-[18px] sm:rounded-[24px] border border-[#DADCDE] cursor-pointer select-none group hover:-translate-y-1 [transition:0.3s]"
                         >
                             <div className="w-[45px] h-[45px] sm:w-[46px] sm:h-[46px] relative shrink-0">
                                 <Image
