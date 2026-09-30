@@ -54,3 +54,12 @@ export interface ICourseCard {
     url?: string;
     className?: string;
 }
+
+export interface ITestimonialCardProps {
+    id?: string | number;
+    name: string;
+    role: string;
+    quote: string;
+    avatar: string | StaticImageData;
+    className?: string;
+}

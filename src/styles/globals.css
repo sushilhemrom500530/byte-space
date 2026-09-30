@@ -60,3 +60,7 @@ body {
 .common-description{
   @apply text-sm md:text-base text-[#4B4C53] leading-relaxed font-normal
 }
+
+.text-color {
+  @apply text-[#4F4F4F]
+}

@@ -11,7 +11,7 @@ import LessonsTab from "@/components/courses/details/tabs/lessons";
 import ReviewsTab from "@/components/courses/details/tabs/reviews";
 import { allCoursesList } from "@/data/coursesList";
 import { ICourseDetailsProps, CourseTabType } from "@/components/courses/details/interface";
-import { FiShare2, FiBarChart2, FiPlay } from "react-icons/fi";
+import { FiShare2, FiBarChart2 } from "react-icons/fi";
 import { HiStar, HiUsers } from "react-icons/hi2";
 
 export default function CourseDetails({ courseId }: ICourseDetailsProps) {
