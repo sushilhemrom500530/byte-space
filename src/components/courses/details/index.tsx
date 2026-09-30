@@ -23,13 +23,14 @@ export default function CourseDetails({ courseId }: ICourseDetailsProps) {
     const videoRef = useRef<HTMLDivElement>(null);
     const [blueBgHeight, setBlueBgHeight] = useState<number | null>(null);
 
-    // Calculate exact height of the blue grid background so it ends at the bottom of the video preview
+    // Calculate exact height of the blue grid background with bottom padding below the video preview
     useEffect(() => {
         const updateHeight = () => {
             if (videoRef.current && articleRef.current) {
                 const videoRect = videoRef.current.getBoundingClientRect();
                 const articleRect = articleRef.current.getBoundingClientRect();
-                const computed = videoRect.bottom - articleRect.top;
+                const bottomPadding = window.innerWidth < 640 ? 44 : 64;
+                const computed = videoRect.bottom - articleRect.top + bottomPadding;
                 if (computed > 0) {
                     setBlueBgHeight(Math.round(computed));
                 }
@@ -166,7 +167,7 @@ export default function CourseDetails({ courseId }: ICourseDetailsProps) {
                             <button
                                 type="button"
                                 onClick={() => setIsPlaying(!isPlaying)}
-                                className="absolute inset-0 m-auto w-14 h-14 sm:w-[90px] sm:h-[90px] rounded-[24px] bg-[#4F4F4F]/30 backdrop-blur-md border border-white/30 flex items-center justify-center text-white"
+                                className="absolute inset-0 m-auto w-14 h-14 sm:w-[90px] sm:h-[90px] rounded-[24px] bg-[#4F4F4F]/30 backdrop-blur-md border border-white/30 flex items-center justify-center text-white cursor-pointer"
                                 aria-label="Play video preview"
                             >
                                 <Image
@@ -179,8 +180,7 @@ export default function CourseDetails({ courseId }: ICourseDetailsProps) {
                             </button>
                         </div>
 
-                        {/* Tabs Row: sitting directly on the white background */}
-                        <div className="mt-8 sm:mt-10 flex items-center gap-2.5 sm:gap-3 flex-wrap">
+                        <div className="mt-20 sm:mt-24 lg:mt-[104px] flex items-center gap-2.5 sm:gap-3 flex-wrap">
                             <button
                                 type="button"
                                 onClick={() => setActiveTab("about")}
@@ -215,7 +215,6 @@ export default function CourseDetails({ courseId }: ICourseDetailsProps) {
                             </button>
                         </div>
 
-                        {/* Active Tab Content Area */}
                         <div className="w-full">
                             {activeTab === "about" && <AboutTab />}
                             {activeTab === "lessons" && <LessonsTab />}
@@ -238,7 +237,7 @@ export default function CourseDetails({ courseId }: ICourseDetailsProps) {
                 </div>
             </div>
 
-            {/* Bottom sticky bar for mobile screens */}
+            {/* sticky bar for mobile screens */}
             <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-neutral-200 px-4 py-3 flex items-center justify-between shadow-lg">
                 <div className="flex items-baseline gap-1">
                     <span className="text-primary font-bold text-2xl tracking-tight">

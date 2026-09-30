@@ -30,10 +30,10 @@ export default function AboutTab() {
         <div className="w-full pt-6 sm:pt-8 text-neutral-800">
             {/* Description Section */}
             <section>
-                <h3 className="text-xl sm:text-2xl font-bold text-neutral-900 tracking-tight mb-4">
+                <h3 className="text-xl font-semibold text-black tracking-tight mb-4">
                     Description
                 </h3>
-                <div className="space-y-4 text-sm sm:text-[15px] text-neutral-600 leading-relaxed font-normal">
+                <div className="space-y-4 text-base text-[#4B4C53] leading-relaxed font-normal">
                     <p>
                         Embark on an enlightening exploration into the world of digital creation with our
                         comprehensive course, &quot;Build Digital Assets: A Comprehensive Guide.&quot; This
@@ -63,14 +63,14 @@ export default function AboutTab() {
 
             {/* Sneak Peak Section */}
             <section className="mt-9 sm:mt-11">
-                <h3 className="text-xl font-bold text-neutral-900 tracking-tight mb-4">
+                <h3 className="text-xl font-semibold text-black tracking-tight mb-4">
                     Sneak Peak
                 </h3>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
                     {sneakPeakImages.map((img, index) => (
                         <div
                             key={index}
-                            className="relative aspect-[4/3] rounded-[18px] overflow-hidden bg-neutral-100 shadow-2xs hover:scale-102 transition-transform duration-300"
+                            className="relative aspect-[4/3] rounded-[16px] overflow-hidden bg-neutral-100"
                         >
                             <Image
                                 src={img.src}
@@ -84,16 +84,15 @@ export default function AboutTab() {
                 </div>
             </section>
 
-            {/* Key Points Section */}
             <section className="mt-9 sm:mt-11">
-                <h3 className="text-xl font-bold text-neutral-900 tracking-tight mb-5">
+                <h3 className="text-xl font-semibold text-black tracking-tight mb-5">
                     Key Points
                 </h3>
                 <ul className="space-y-3.5">
                     {keyPoints.map((point, index) => (
                         <li
                             key={index}
-                            className="flex items-center gap-3 text-sm sm:text-[15px] text-neutral-700 font-medium"
+                            className="flex items-center gap-3 text-base text-[#4B4C53] font-normal"
                         >
                             <HiCheckCircle className="w-5 h-5 text-primary shrink-0" />
                             <span>{point}</span>
