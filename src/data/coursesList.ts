@@ -146,6 +146,7 @@ export const allCoursesList: (ICourseCard & { category: string })[] = Array.from
         return {
             ...base,
             id: index + 1,
+            url: `/courses/view/${index + 1}`,
             category: assignedCategory,
         };
     }

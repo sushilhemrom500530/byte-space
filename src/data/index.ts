@@ -180,7 +180,7 @@ export const coursesData: ICourseCard[] = [
         duration: "2 hours 16 mins",
         comments: "59 Comments",
         image: learnFigmaImg,
-        url: "/courses/learn-figma-from-basic",
+        url: "/courses/view/1",
     },
     {
         id: 2,
@@ -198,7 +198,7 @@ export const coursesData: ICourseCard[] = [
         duration: "2 hours 16 mins",
         comments: "59 Comments",
         image: digitalAssetsImg,
-        url: "/courses/build-digital-asset",
+        url: "/courses/view/2",
     },
     {
         id: 3,
@@ -216,7 +216,7 @@ export const coursesData: ICourseCard[] = [
         duration: "2 hours 16 mins",
         comments: "59 Comments",
         image: bigDataImg,
-        url: "/courses/power-of-big-data",
+        url: "/courses/view/3",
     },
     {
         id: 4,
@@ -234,7 +234,7 @@ export const coursesData: ICourseCard[] = [
         duration: "2 hours 16 mins",
         comments: "59 Comments",
         image: balancingImg,
-        url: "/courses/balancing-productivity",
+        url: "/courses/view/4",
     },
     {
         id: 5,
@@ -252,7 +252,7 @@ export const coursesData: ICourseCard[] = [
         duration: "2 hours 16 mins",
         comments: "59 Comments",
         image: moneyManageImg,
-        url: "/courses/mastering-money-management",
+        url: "/courses/view/5",
     },
     {
         id: 6,
@@ -270,7 +270,7 @@ export const coursesData: ICourseCard[] = [
         duration: "2 hours 16 mins",
         comments: "59 Comments",
         image: startupIdeaImg,
-        url: "/courses/from-idea-to-startup",
+        url: "/courses/view/6",
     },
 ];
 
