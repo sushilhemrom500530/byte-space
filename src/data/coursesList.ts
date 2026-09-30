@@ -1,10 +1,10 @@
 import { ICourseCard } from "@/types";
-import learnFigmaImg from "@/assets/skills/learn-figma.png";
-import digitalAssetsImg from "@/assets/skills/digital-assets.png";
-import bigDataImg from "@/assets/skills/big-data.png";
-import balancingImg from "@/assets/skills/balancing.png";
-import moneyManageImg from "@/assets/skills/mastaring-money.png";
-import startupIdeaImg from "@/assets/skills/startup-idea.png";
+import learnFigmaImg from "@/assets/skills/figma.jpg";
+import digitalAssetsImg from "@/assets/skills/digital-assets.jpg";
+import bigDataImg from "@/assets/skills/big-data.jpg";
+import balancingImg from "@/assets/skills/balancing.jpg";
+import moneyManageImg from "@/assets/skills/money-manage.jpg";
+import startupIdeaImg from "@/assets/skills/startup-success.jpg";
 import student1 from "@/assets/avatars/student-1.png";
 import student2 from "@/assets/avatars/student-2.png";
 import student3 from "@/assets/avatars/student-3.png";

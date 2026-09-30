@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import CoursesBanner from "@/components/courses/banner";
 import CourseCard from "@/components/reuseable/course-card";
 import { allCoursesList, courseTags } from "@/data/coursesList";
@@ -9,16 +9,83 @@ import { BiCategory } from "react-icons/bi";
 
 const PAGE_SIZE = 15;
 
+const sortOptions = [
+    { id: "relevant", label: "Most relevant" },
+    { id: "popular", label: "Most popular" },
+    { id: "rating", label: "Highest rated" },
+    { id: "price-asc", label: "Price: Low to High" },
+    { id: "price-desc", label: "Price: High to Low" },
+] as const;
+
+type SortType = (typeof sortOptions)[number]["id"];
+
+const levelOptions = [
+    { id: null, label: "All Levels" },
+    { id: "Beginner", label: "Beginner" },
+    { id: "Intermediate", label: "Intermediate" },
+    { id: "Advanced", label: "Advanced" },
+];
+
+const categoryOptions = [
+    { id: null, label: "All Categories" },
+    { id: "UI/UX Design", label: "UI/UX Design" },
+    { id: "Marketing", label: "Marketing" },
+    { id: "Social Media", label: "Social Media" },
+    { id: "Drawing & Painting", label: "Drawing & Painting" },
+    { id: "Creative Marketing", label: "Creative Marketing" },
+    { id: "Animation", label: "Animation" },
+    { id: "Music", label: "Music" },
+    { id: "Cooking", label: "Cooking" },
+];
+
 export default function Courses() {
     const [searchQuery, setSearchQuery] = useState("");
     const [bannerCategory, setBannerCategory] = useState<string | null>(null);
     const [activeTag, setActiveTag] = useState<string>("Featured");
     const [selectedLevel, setSelectedLevel] = useState<string | null>(null);
     const [selectedFilterCategory, setSelectedFilterCategory] = useState<string | null>(null);
-    const [sortBy, setSortBy] = useState<"relevant" | "price-asc" | "price-desc">("relevant");
+    const [sortBy, setSortBy] = useState<SortType>("relevant");
     const [currentPage, setCurrentPage] = useState(1);
 
+    const [isSortOpen, setIsSortOpen] = useState(false);
+    const [isLevelOpen, setIsLevelOpen] = useState(false);
+    const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+
     const catalogRef = useRef<HTMLDivElement>(null);
+    const sortRef = useRef<HTMLDivElement>(null);
+    const levelRef = useRef<HTMLDivElement>(null);
+    const categoryRef = useRef<HTMLDivElement>(null);
+
+    // Close dropdowns on outside click or ESC key
+    useEffect(() => {
+        const handleClickOutside = (e: MouseEvent) => {
+            const target = e.target as Node;
+            if (sortRef.current && !sortRef.current.contains(target)) {
+                setIsSortOpen(false);
+            }
+            if (levelRef.current && !levelRef.current.contains(target)) {
+                setIsLevelOpen(false);
+            }
+            if (categoryRef.current && !categoryRef.current.contains(target)) {
+                setIsCategoryOpen(false);
+            }
+        };
+
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape") {
+                setIsSortOpen(false);
+                setIsLevelOpen(false);
+                setIsCategoryOpen(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener("keydown", handleKeyDown);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener("keydown", handleKeyDown);
+        };
+    }, []);
 
     // Filter and sort courses
     const filteredCourses = useMemo(() => {
@@ -63,6 +130,14 @@ export default function Courses() {
             result.sort((a, b) => Number(a.price || 0) - Number(b.price || 0));
         } else if (sortBy === "price-desc") {
             result.sort((a, b) => Number(b.price || 0) - Number(a.price || 0));
+        } else if (sortBy === "rating") {
+            result.sort((a, b) => Number(b.rating || 0) - Number(a.rating || 0));
+        } else if (sortBy === "popular") {
+            result.sort((a, b) => {
+                const countA = parseInt(a.studentsCount?.replace(/\D/g, "") || "0");
+                const countB = parseInt(b.studentsCount?.replace(/\D/g, "") || "0");
+                return countB - countA;
+            });
         }
 
         return result;
@@ -75,7 +150,6 @@ export default function Courses() {
         return filteredCourses.slice(startIndex, startIndex + PAGE_SIZE);
     }, [filteredCourses, currentPage]);
 
-
     const handlePageChange = (newPage: number) => {
         if (newPage >= 1 && newPage <= totalPages) {
             setCurrentPage(newPage);
@@ -86,11 +160,13 @@ export default function Courses() {
         }
     };
 
-    // Handle tag click (reset page to 1)
     const handleTagClick = (tag: string) => {
         setActiveTag(tag);
         setCurrentPage(1);
     };
+
+    const currentSortLabel =
+        sortOptions.find((opt) => opt.id === sortBy)?.label || "Most relevant";
 
     return (
         <section className="w-full">
@@ -121,82 +197,206 @@ export default function Courses() {
                                     setActiveTag("Featured");
                                     setSearchQuery("");
                                     setBannerCategory(null);
+                                    setSortBy("relevant");
                                     setCurrentPage(1);
                                 }}
-                                className={`course-button ${selectedLevel || selectedFilterCategory || searchQuery || bannerCategory
-                                    ? "border-primary bg-primary/10 text-primary font-semibold"
-                                    : "border-[#E5E7EB] bg-white text-neutral-800 hover:bg-neutral-50"
-                                    }`}
+                                className={`course-button ${
+                                    selectedLevel ||
+                                    selectedFilterCategory ||
+                                    searchQuery ||
+                                    bannerCategory ||
+                                    sortBy !== "relevant"
+                                        ? "border-primary bg-primary/10 text-primary font-semibold"
+                                        : "border-[#E5E7EB] bg-white text-neutral-800 hover:bg-neutral-50"
+                                }`}
                             >
                                 <FiFilter className="w-4 h-4 text-neutral-600" />
                                 <span>
-                                    {selectedLevel || selectedFilterCategory || searchQuery || bannerCategory
+                                    {selectedLevel ||
+                                    selectedFilterCategory ||
+                                    searchQuery ||
+                                    bannerCategory ||
+                                    sortBy !== "relevant"
                                         ? "Reset"
                                         : "Filter"}
                                 </span>
                             </button>
 
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    setSelectedLevel((prev) => (prev ? null : "Beginner"));
-                                    setCurrentPage(1);
-                                }}
-                                className={`course-button ${selectedLevel
-                                    ? "border-primary bg-primary/5 text-primary"
-                                    : "border-[#E5E7EB] bg-white text-neutral-800 hover:bg-neutral-50"
+                            {/* Level Dropdown */}
+                            <div className="relative" ref={levelRef}>
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        setIsLevelOpen((prev) => !prev);
+                                        setIsSortOpen(false);
+                                        setIsCategoryOpen(false);
+                                    }}
+                                    className={`course-button ${
+                                        selectedLevel || isLevelOpen
+                                            ? "border-primary bg-primary/5 text-primary"
+                                            : "border-[#E5E7EB] bg-white text-neutral-800 hover:bg-neutral-50"
                                     }`}
-                            >
-                                <FiBarChart2 className="w-4 h-4 text-neutral-600" />
-                                <span>{selectedLevel ? `Level: ${selectedLevel}` : "Level"}</span>
-                            </button>
+                                    aria-expanded={isLevelOpen}
+                                >
+                                    <FiBarChart2 className="w-4 h-4 text-neutral-600" />
+                                    <span>{selectedLevel ? `Level: ${selectedLevel}` : "Level"}</span>
+                                </button>
 
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    setSelectedFilterCategory((prev) =>
-                                        prev ? null : "UI/UX Design"
-                                    );
-                                    setCurrentPage(1);
-                                }}
-                                className={`course-button ${selectedFilterCategory
-                                    ? "border-primary bg-primary/5 text-primary"
-                                    : "border-[#E5E7EB] bg-white text-neutral-800 hover:bg-neutral-50"
+                                {isLevelOpen && (
+                                    <div className="absolute left-0 top-full mt-2 w-44 bg-white rounded-2xl shadow-xl border border-neutral-100 py-2 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+                                        <div className="px-3.5 py-1.5 text-[11px] font-semibold tracking-wider uppercase text-neutral-400">
+                                            Select level
+                                        </div>
+                                        <div className="max-h-60 overflow-y-auto" role="listbox">
+                                            {levelOptions.map((opt) => {
+                                                const isSelected = selectedLevel === opt.id;
+                                                return (
+                                                    <button
+                                                        key={opt.label}
+                                                        type="button"
+                                                        onClick={() => {
+                                                            setSelectedLevel(opt.id);
+                                                            setIsLevelOpen(false);
+                                                            setCurrentPage(1);
+                                                        }}
+                                                        className={`w-full text-left px-4 py-2.5 text-sm transition-colors cursor-pointer flex items-center justify-between ${
+                                                            isSelected
+                                                                ? "bg-neutral-100 text-primary font-semibold"
+                                                                : "text-neutral-700 hover:bg-neutral-50 hover:text-neutral-900"
+                                                        }`}
+                                                        role="option"
+                                                        aria-selected={isSelected}
+                                                    >
+                                                        <span>{opt.label}</span>
+                                                        {isSelected && (
+                                                            <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                                                        )}
+                                                    </button>
+                                                );
+                                            })}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Category Dropdown */}
+                            <div className="relative" ref={categoryRef}>
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        setIsCategoryOpen((prev) => !prev);
+                                        setIsSortOpen(false);
+                                        setIsLevelOpen(false);
+                                    }}
+                                    className={`course-button ${
+                                        selectedFilterCategory || isCategoryOpen
+                                            ? "border-primary bg-primary/5 text-primary"
+                                            : "border-[#E5E7EB] bg-white text-neutral-800 hover:bg-neutral-50"
                                     }`}
-                            >
-                                <BiCategory className="w-4.5 h-4.5 text-neutral-600" />
-                                <span>
-                                    {selectedFilterCategory
-                                        ? `Category: ${selectedFilterCategory}`
-                                        : "Category"}
-                                </span>
-                            </button>
+                                    aria-expanded={isCategoryOpen}
+                                >
+                                    <BiCategory className="w-4.5 h-4.5 text-neutral-600" />
+                                    <span>
+                                        {selectedFilterCategory
+                                            ? `Category: ${selectedFilterCategory}`
+                                            : "Category"}
+                                    </span>
+                                </button>
+
+                                {isCategoryOpen && (
+                                    <div className="absolute left-0 top-full mt-2 w-52 bg-white rounded-2xl shadow-xl border border-neutral-100 py-2 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+                                        <div className="px-3.5 py-1.5 text-[11px] font-semibold tracking-wider uppercase text-neutral-400">
+                                            Select category
+                                        </div>
+                                        <div className="max-h-60 overflow-y-auto" role="listbox">
+                                            {categoryOptions.map((opt) => {
+                                                const isSelected =
+                                                    selectedFilterCategory === opt.id;
+                                                return (
+                                                    <button
+                                                        key={opt.label}
+                                                        type="button"
+                                                        onClick={() => {
+                                                            setSelectedFilterCategory(opt.id);
+                                                            setIsCategoryOpen(false);
+                                                            setCurrentPage(1);
+                                                        }}
+                                                        className={`w-full text-left px-4 py-2.5 text-sm transition-colors cursor-pointer flex items-center justify-between ${
+                                                            isSelected
+                                                                ? "bg-neutral-100 text-primary font-semibold"
+                                                                : "text-neutral-700 hover:bg-neutral-50 hover:text-neutral-900"
+                                                        }`}
+                                                        role="option"
+                                                        aria-selected={isSelected}
+                                                    >
+                                                        <span>{opt.label}</span>
+                                                        {isSelected && (
+                                                            <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                                                        )}
+                                                    </button>
+                                                );
+                                            })}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
                         </div>
 
-                        {/* most relevant */}
-                        <div className="flex items-center">
+                        {/* most relevant dropdown */}
+                        <div className="relative" ref={sortRef}>
                             <button
                                 type="button"
-                                onClick={() =>
-                                    setSortBy((prev) =>
-                                        prev === "relevant"
-                                            ? "price-asc"
-                                            : prev === "price-asc"
-                                                ? "price-desc"
-                                                : "relevant"
-                                    )
-                                }
-                                className="course-button border-[#E5E7EB] bg-white text-neutral-800 hover:bg-neutral-50"
+                                onClick={() => {
+                                    setIsSortOpen((prev) => !prev);
+                                    setIsLevelOpen(false);
+                                    setIsCategoryOpen(false);
+                                }}
+                                className={`course-button ${
+                                    sortBy !== "relevant" || isSortOpen
+                                        ? "border-primary bg-primary/5 text-primary"
+                                        : "border-[#E5E7EB] bg-white text-neutral-800 hover:bg-neutral-50"
+                                }`}
+                                aria-expanded={isSortOpen}
                             >
                                 <FiSliders className="w-4 h-4 text-neutral-600" />
-                                <span>
-                                    {sortBy === "relevant"
-                                        ? "Most relevant"
-                                        : sortBy === "price-asc"
-                                            ? "Price: Low to High"
-                                            : "Price: High to Low"}
-                                </span>
+                                <span>{currentSortLabel}</span>
                             </button>
+
+                            {isSortOpen && (
+                                <div className="absolute right-0 top-full mt-2 w-52 bg-white rounded-2xl shadow-xl border border-neutral-100 py-2 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+                                    <div className="px-3.5 py-1.5 text-[11px] font-semibold tracking-wider uppercase text-neutral-400">
+                                        Sort by
+                                    </div>
+                                    <div className="max-h-60 overflow-y-auto" role="listbox">
+                                        {sortOptions.map((opt) => {
+                                            const isSelected = sortBy === opt.id;
+                                            return (
+                                                <button
+                                                    key={opt.id}
+                                                    type="button"
+                                                    onClick={() => {
+                                                        setSortBy(opt.id);
+                                                        setIsSortOpen(false);
+                                                        setCurrentPage(1);
+                                                    }}
+                                                    className={`w-full text-left px-4 py-2.5 text-sm transition-colors cursor-pointer flex items-center justify-between ${
+                                                        isSelected
+                                                            ? "bg-neutral-100 text-primary font-semibold"
+                                                            : "text-neutral-700 hover:bg-neutral-50 hover:text-neutral-900"
+                                                    }`}
+                                                    role="option"
+                                                    aria-selected={isSelected}
+                                                >
+                                                    <span>{opt.label}</span>
+                                                    {isSelected && (
+                                                        <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                                                    )}
+                                                </button>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
 
@@ -209,10 +409,11 @@ export default function Courses() {
                                     key={tag}
                                     type="button"
                                     onClick={() => handleTagClick(tag)}
-                                    className={`px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all cursor-pointer ${isActive
-                                        ? "bg-secondary text-black font-semibold shadow-xs"
-                                        : "bg-[#F4F4F5] text-neutral-800 hover:bg-neutral-200/80"
-                                        }`}
+                                    className={`px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all cursor-pointer ${
+                                        isActive
+                                            ? "bg-secondary text-black font-semibold shadow-xs"
+                                            : "bg-[#F4F4F5] text-neutral-800 hover:bg-neutral-200/80"
+                                    }`}
                                 >
                                     {tag}
                                 </button>
@@ -240,6 +441,7 @@ export default function Courses() {
                                     setActiveTag("Featured");
                                     setSelectedLevel(null);
                                     setSelectedFilterCategory(null);
+                                    setSortBy("relevant");
                                     setCurrentPage(1);
                                 }}
                                 className="mt-4 px-5 py-2 rounded-full bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors"
@@ -270,10 +472,11 @@ export default function Courses() {
                                             key={page}
                                             type="button"
                                             onClick={() => handlePageChange(page)}
-                                            className={`min-w-8 h-8 sm:min-w-9 sm:h-9 flex items-center justify-center text-base sm:text-[17px] transition-colors cursor-pointer ${isCurrent
-                                                ? "font-bold text-neutral-950 scale-105"
-                                                : "font-medium text-[#A1A1AA] hover:text-neutral-900"
-                                                }`}
+                                            className={`min-w-8 h-8 sm:min-w-9 sm:h-9 flex items-center justify-center text-base sm:text-[17px] transition-colors cursor-pointer ${
+                                                isCurrent
+                                                    ? "font-bold text-neutral-950 scale-105"
+                                                    : "font-medium text-[#A1A1AA] hover:text-neutral-900"
+                                            }`}
                                             aria-current={isCurrent ? "page" : undefined}
                                         >
                                             {page}
