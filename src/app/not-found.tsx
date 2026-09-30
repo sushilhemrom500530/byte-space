@@ -10,7 +10,7 @@ export default function NotFound() {
 
             <Navbar />
 
-            <main className="flex-1 flex flex-col items-center justify-center px-4 py-8 relative z-10 mt-12">
+            <main className="flex-1 flex flex-col items-center justify-center px-4 py-8 relative z-10 mt-40">
                 <div className="relative flex flex-col items-center justify-center text-center max-w-4xl mx-auto w-full">
                     <div className="relative w-full max-w-[480px] sm:max-w-[620px] md:max-w-[700px] lg:max-w-[750px] pointer-events-none select-none">
                         <Image
