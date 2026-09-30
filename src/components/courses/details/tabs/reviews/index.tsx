@@ -68,10 +68,10 @@ export default function ReviewsTab() {
     return (
         <div className="w-full pt-6 sm:pt-8 text-neutral-800">
             <section>
-                <h3 className="text-xl sm:text-2xl font-bold text-neutral-900 tracking-tight">
+                <h3 className="common-title">
                     What Learners Are Saying
                 </h3>
-                <p className="mt-2 text-sm sm:text-[15px] text-neutral-500 leading-relaxed max-w-2xl font-normal">
+                <p className="mt-2 common-description max-w-3xl">
                     Discover what our learners have to say about their experience with &apos;Build Digital
                     Assets: A Comprehensive Guide.&apos; Read reviews and ratings from individuals who
                     have embarked on the transformative journey of mastering digital asset creation.
@@ -79,7 +79,7 @@ export default function ReviewsTab() {
             </section>
 
             {/* rating overview */}
-            <div className="mt-6 border border-neutral-200 rounded-[20px] p-5 sm:p-7 bg-white flex flex-col sm:flex-row items-center gap-6 sm:gap-8 max-w-2xl shadow-2xs">
+            <div className="mt-6 border border-neutral-200 rounded-[16px] p-5 sm:p-7 bg-white flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
 
                 <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-[18px] bg-secondary flex flex-col items-center justify-center shrink-0 shadow-xs">
                     <span className="text-xs sm:text-[13px] font-semibold text-neutral-700 tracking-wider">
@@ -121,7 +121,7 @@ export default function ReviewsTab() {
             </div>
 
             <section className="mt-9 sm:mt-11">
-                <h4 className="text-base sm:text-lg font-bold text-neutral-900 mb-4">
+                <h4 className="common-title mb-4">
                     Individual Reviews:
                 </h4>
 
@@ -158,7 +158,7 @@ export default function ReviewsTab() {
                     {filteredReviews.map((review) => (
                         <div
                             key={review.id}
-                            className="border border-neutral-200 rounded-[20px] p-5 sm:p-6 bg-white hover:border-neutral-300 transition-colors shadow-2xs"
+                            className="border border-neutral-200 rounded-[16px] p-5 sm:p-6 bg-white cursor-pointer"
                         >
                             <div className="flex items-center justify-between gap-3">
                                 <div className="flex items-center gap-3">
