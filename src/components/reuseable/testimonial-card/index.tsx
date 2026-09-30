@@ -10,10 +10,10 @@ export default function TestimonialCard({
 }: ITestimonialCardProps) {
     return (
         <div
-            className={`bg-white rounded-[20px] sm:rounded-[24px] p-6 sm:p-7 shadow-[0_4px_24px_rgba(0,0,0,0.03)] border border-neutral-100/90 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 select-none ${className}`}
+            className={`bg-white rounded-[20px] sm:rounded-[24px] p-6 sm:p-7 border border-neutral-100/90 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 select-none ${className}`}
         >
             <div>
-                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden relative shrink-0 shadow-xs">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden relative shrink-0">
                     <Image
                         src={avatar}
                         alt={name}
