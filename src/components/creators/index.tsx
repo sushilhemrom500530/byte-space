@@ -5,10 +5,15 @@ import Image from "next/image";
 import alexImg from "@/assets/users/alex.png";
 import CourseCard from "@/components/reuseable/course-card";
 import { coursesData } from "@/data";
+import { FiFilter, FiBarChart2 } from "react-icons/fi";
+import { BiCategory } from "react-icons/bi";
+import { BsFilterLeft } from "react-icons/bs";
 
 export default function Creators() {
     const [isFollowing, setIsFollowing] = useState(false);
     const [followersCount, setFollowersCount] = useState(12);
+    const [selectedLevel, setSelectedLevel] = useState<string | null>(null);
+    const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
     const handleFollowToggle = () => {
         setIsFollowing((prev) => {
@@ -86,19 +91,59 @@ export default function Creators() {
                 </div>
             </div>
 
-            {/* Courses / Products Section by Creator */}
-            <div className="w-full bg-[#FAFAFA] py-12 sm:py-16">
-                <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-[71px]">
-                    <div className="mb-8 flex items-center justify-between">
-                        <h2 className="text-2xl font-bold text-[#111827] tracking-tight">
-                            Courses by PurePearl Studio
-                        </h2>
-                        <span className="text-sm font-medium text-neutral-500">
-                            3 Available Courses
-                        </span>
+            {/* Courses / Products Section with Filter Bar */}
+            <div className="w-full bg-[#FFFFFF] py-10 sm:py-14">
+                <div className="custom-container">
+                    {/* Filter & Sort Bar */}
+                    <div className="flex flex-wrap items-center justify-between gap-4 mb-8 sm:mb-10">
+                        {/* Left Filter Options */}
+                        <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+                            <button
+                                type="button"
+                                className="course-button border-[#E5E7EB]"
+                            >
+                                <FiFilter className="w-4 h-4 text-neutral-600" />
+                                <span>Filter</span>
+                            </button>
+
+                            <button
+                                type="button"
+                                onClick={() => setSelectedLevel(selectedLevel ? null : "Beginner")}
+                                className={`course-button ${selectedLevel
+                                    ? "border-primary bg-primary/5 text-primary"
+                                    : "border-[#E5E7EB] bg-white text-neutral-800 hover:bg-neutral-50"
+                                    }`}
+                            >
+                                <FiBarChart2 className="w-4 h-4 text-neutral-600" />
+                                <span>Level</span>
+                            </button>
+
+                            <button
+                                type="button"
+                                onClick={() => setSelectedCategory(selectedCategory ? null : "Design")}
+                                className={`course-button ${selectedCategory
+                                    ? "border-primary bg-primary/5 text-primary"
+                                    : "border-[#E5E7EB] bg-white text-neutral-800 hover:bg-neutral-50"
+                                    }`}
+                            >
+                                <BiCategory className="w-4.5 h-4.5 text-neutral-600" />
+                                <span>Category</span>
+                            </button>
+                        </div>
+
+                        <div className="flex items-center">
+                            <button
+                                type="button"
+                                className="course-button border-[#E5E7EB]"
+                            >
+                                <BsFilterLeft className="w-5 h-5 text-neutral-600" />
+                                <span>Most relevant</span>
+                            </button>
+                        </div>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 justify-items-center sm:justify-items-start">
+                    {/* Courses Cards Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 w-full">
                         {coursesData.map((course) => (
                             <CourseCard key={course.id} data={course} />
                         ))}

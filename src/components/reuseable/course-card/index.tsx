@@ -2,18 +2,6 @@ import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import { FiImage } from "react-icons/fi";
 import { ICourseCard } from "@/types";
-import learnFigmaImg from "@/assets/skills/figma.jpg";
-import student1 from "@/assets/users/alex.png";
-import student2 from "@/assets/avatars/student-2.png";
-import student3 from "@/assets/avatars/student-3.png";
-import student4 from "@/assets/avatars/student-4.png";
-
-export const defaultCourseAvatars: (StaticImageData | string)[] = [
-    student1,
-    student2,
-    student3,
-    student4,
-];
 
 interface CourseCardProps extends Partial<ICourseCard> {
     data?: ICourseCard;
@@ -23,22 +11,22 @@ export default function CourseCard(props: CourseCardProps) {
     const course = props.data ? { ...props.data, ...props } : props;
 
     const {
-        title = "Learn Figma from Basic",
-        author = "purepearl studio",
-        authorPrefix = "by",
+        title,
+        author,
+        authorPrefix,
         authorUrl,
-        rating = 4.5,
-        level = "Beginner",
-        studentsCount = "26+",
-        avatars = defaultCourseAvatars,
-        price = "$25",
-        priceSuffix = "/lifetime",
-        image = learnFigmaImg,
+        rating,
+        level,
+        studentsCount,
+        avatars,
+        price,
+        priceSuffix,
+        image,
         imageAlt,
         tags,
-        lessons = "17 Lessons",
-        duration = "2 hours 16 mins",
-        comments = "59 Comments",
+        lessons,
+        duration,
+        comments,
         url,
         className = "",
     } = course;
@@ -49,25 +37,26 @@ export default function CourseCard(props: CourseCardProps) {
             : ([lessons, duration, comments].filter(Boolean) as string[]);
 
     const displayPrice =
-        typeof price === "number"
-            ? `$${price}`
-            : price?.toString().startsWith("$")
-                ? price
-                : `$${price}`;
+        price !== undefined && price !== null
+            ? typeof price === "number"
+                ? `$${price}`
+                : price.toString().startsWith("$")
+                    ? price
+                    : `$${price}`
+            : "";
 
-    const displayAvatars =
-        avatars && avatars.length > 0 ? avatars : defaultCourseAvatars;
+    const displayAvatars = avatars || [];
 
     const cardContent = (
         <div
-            className={`w-full max-w-[396px] bg-white rounded-[28px] border border-[#E5E7EB] p-4 sm:p-4.5 transition-all duration-300 ${url ? "hover:border-neutral-300 hover:shadow-xl cursor-pointer" : "cursor-default"
+            className={`!w-full bg-white rounded-[24px] border border-[#E5E7EB] p-4 sm:p-4.5 transition-all duration-300 ${url ? "hover:border-neutral-300 cursor-pointer" : "cursor-default"
                 } ${className}`}
         >
             <div className="relative w-full aspect-[363/205] rounded-[20px] overflow-hidden bg-neutral-100 mb-4 select-none">
                 {image ? (
                     <Image
                         src={image}
-                        alt={imageAlt || title}
+                        alt={imageAlt || title || "Course thumbnail"}
                         fill
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 396px"
                         className={`object-cover transition-transform duration-500 ${url ? "group-hover:scale-[1.02]" : ""
@@ -80,7 +69,6 @@ export default function CourseCard(props: CourseCardProps) {
                     </div>
                 )}
 
-                {/* floating pill badges */}
                 {displayTags.length > 0 && (
                     <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-1.5 z-10 pointer-events-none">
                         {displayTags.map((tag, idx) => (
@@ -96,12 +84,14 @@ export default function CourseCard(props: CourseCardProps) {
             </div>
 
             <div className="flex items-center justify-between gap-2">
-                <h3
-                    className={`text-xl font-bold text-[#111827] tracking-tight truncate ${url ? "group-hover:text-primary transition-colors" : ""
-                        }`}
-                >
-                    {title}
-                </h3>
+                {title && (
+                    <h3
+                        className={`text-xl font-bold text-[#111827] tracking-tight truncate ${url ? "group-hover:text-primary transition-colors" : ""
+                            }`}
+                    >
+                        {title}
+                    </h3>
+                )}
 
                 {rating !== undefined && rating !== null && (
                     <div className="flex items-center gap-1.5 shrink-0 text-[#71717A]">
@@ -119,89 +109,96 @@ export default function CourseCard(props: CourseCardProps) {
                 )}
             </div>
 
-            {/* Author */}
-            <div className="mt-1 mb-4 flex items-center gap-1 text-sm text-[#71717A]">
-                <span>{authorPrefix}</span>
-                {authorUrl && !url ? (
-                    <Link
-                        href={authorUrl}
-                        className="text-primary hover:underline"
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        {author}
-                    </Link>
-                ) : (
-                    <span className="text-primary hover:underline cursor-pointer">
-                        {author}
-                    </span>
-                )}
-            </div>
+            {author && (
+                <div className="mt-1 mb-4 flex items-center gap-1 text-sm text-[#71717A]">
+                    {authorPrefix && <span>{authorPrefix}</span>}
+                    {authorUrl && !url ? (
+                        <Link
+                            href={authorUrl}
+                            className="text-primary hover:underline"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            {author}
+                        </Link>
+                    ) : (
+                        <span className="text-primary hover:underline cursor-pointer">
+                            {author}
+                        </span>
+                    )}
+                </div>
+            )}
 
             <div className="flex items-center justify-between gap-2 my-3">
-                <div className="flex items-center gap-1.5 bg-[#F4F4F5] text-[#52525B] text-xs font-medium px-3.5 py-1.5 rounded-full">
-                    <svg
-                        width="13"
-                        height="13"
-                        viewBox="0 0 16 16"
-                        fill="currentColor"
-                        className="text-[#52525B]"
-                    >
-                        <rect x="2" y="9" width="3" height="5" rx="0.75" />
-                        <rect x="6.5" y="5.5" width="3" height="8.5" rx="0.75" />
-                        <rect x="11" y="2" width="3" height="12" rx="0.75" />
-                    </svg>
-                    <span>{level}</span>
-                </div>
-
-                <div className="flex items-center">
-                    <div className="flex -space-x-1.5 sm:-space-x-2">
-                        {displayAvatars.slice(0, 4).map((av: StaticImageData | string, idx: number) => (
-                            <div
-                                key={idx}
-                                className="w-8 h-8 rounded-full overflow-hidden relative shrink-0"
-                                style={{ zIndex: idx }}
-                            >
-                                <Image
-                                    src={av}
-                                    alt="Student avatar"
-                                    fill
-                                    sizes="32px"
-                                    className="object-cover"
-                                />
-                            </div>
-                        ))}
-                        {studentsCount && (
-                            <div
-                                className="w-8 h-8 rounded-full bg-secondary text-black text-xs font-medium flex items-center justify-center shrink-0"
-                                style={{ zIndex: 10 }}
-                            >
-                                {studentsCount}
-                            </div>
-                        )}
+                {level && (
+                    <div className="flex items-center gap-1.5 bg-[#F4F4F5] text-[#52525B] text-xs font-medium px-3.5 py-1.5 rounded-full">
+                        <svg
+                            width="13"
+                            height="13"
+                            viewBox="0 0 16 16"
+                            fill="currentColor"
+                            className="text-[#52525B]"
+                        >
+                            <rect x="2" y="9" width="3" height="5" rx="0.75" />
+                            <rect x="6.5" y="5.5" width="3" height="8.5" rx="0.75" />
+                            <rect x="11" y="2" width="3" height="12" rx="0.75" />
+                        </svg>
+                        <span>{level}</span>
                     </div>
-                </div>
-            </div>
+                )}
 
-            <div className="mt-4 flex items-baseline">
-                <span className="text-primary font-bold text-2xl tracking-tight">
-                    {displayPrice}
-                </span>
-                {priceSuffix && (
-                    <span className="text-[#71717A] text-xs font-normal ml-0.5">
-                        {priceSuffix}
-                    </span>
+                {(displayAvatars.length > 0 || studentsCount) && (
+                    <div className="flex items-center">
+                        <div className="flex -space-x-1.5 sm:-space-x-2">
+                            {displayAvatars.slice(0, 4).map((av: StaticImageData | string, idx: number) => (
+                                <div
+                                    key={idx}
+                                    className="w-8 h-8 rounded-full overflow-hidden relative shrink-0"
+                                    style={{ zIndex: idx }}
+                                >
+                                    <Image
+                                        src={av}
+                                        alt="Student avatar"
+                                        fill
+                                        sizes="32px"
+                                        className="object-cover"
+                                    />
+                                </div>
+                            ))}
+                            {studentsCount && (
+                                <div
+                                    className="w-8 h-8 rounded-full bg-secondary text-black text-xs font-medium flex items-center justify-center shrink-0"
+                                    style={{ zIndex: 10 }}
+                                >
+                                    {studentsCount}
+                                </div>
+                            )}
+                        </div>
+                    </div>
                 )}
             </div>
+
+            {displayPrice && (
+                <div className="mt-4 flex items-baseline">
+                    <span className="text-primary font-bold text-2xl tracking-tight">
+                        {displayPrice}
+                    </span>
+                    {priceSuffix && (
+                        <span className="text-[#71717A] text-xs font-normal ml-0.5">
+                            {priceSuffix}
+                        </span>
+                    )}
+                </div>
+            )}
         </div>
     );
 
     if (url) {
         return (
-            <Link href={url} className="group block no-underline focus:outline-hidden">
+            <Link href={url} className="group block w-full no-underline focus:outline-hidden">
                 {cardContent}
             </Link>
         );
     }
 
-    return <div className="group block select-none">{cardContent}</div>;
+    return <div className="group block w-full select-none">{cardContent}</div>;
 }

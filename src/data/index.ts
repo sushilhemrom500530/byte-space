@@ -4,6 +4,9 @@ import coursesJson from "./courses.json";
 import learnFigmaImg from "@/assets/skills/learn-figma.png";
 import bigDataImg from "@/assets/skills/big-data.png";
 import digitalAssetsImg from "@/assets/skills/digital-assets.png";
+import balancingImg from "@/assets/skills/balancing.png";
+import moneyManageImg from "@/assets/skills/mastaring-money.png";
+import startupIdeaImg from "@/assets/skills/startup-idea.png";
 import student1 from "@/assets/avatars/student-1.png";
 import student2 from "@/assets/avatars/student-2.png";
 import student3 from "@/assets/avatars/student-3.png";
@@ -157,6 +160,7 @@ export const footerBottomLinks: IFooterLink[] = [
 ];
 
 
+
 export const defaultCourseAvatars = [student1, student2, student3, student4];
 
 export const coursesData: ICourseCard[] = [
@@ -180,38 +184,93 @@ export const coursesData: ICourseCard[] = [
     },
     {
         id: 2,
-        title: "Big Data Analytics Mastery",
+        title: "Build Digital Asset",
         author: "purepearl studio",
         authorPrefix: "by",
         authorUrl: "/creators/purepearl-studio",
-        rating: 4.8,
+        rating: 4.5,
         level: "Beginner",
-        studentsCount: "32+",
+        studentsCount: "26+",
         avatars: [student1, student2, student3, student4],
-        price: 30,
+        price: 25,
         priceSuffix: "/lifetime",
-        lessons: "14 Lessons",
-        duration: "2 hours 10 mins",
-        comments: "45 Comments",
-        image: bigDataImg,
-        url: "/courses/big-data-mastery",
+        lessons: "17 Lessons",
+        duration: "2 hours 16 mins",
+        comments: "59 Comments",
+        image: digitalAssetsImg,
+        url: "/courses/build-digital-asset",
     },
     {
         id: 3,
-        title: "Digital Assets & Crypto Trading",
+        title: "the Power of Big Data",
         author: "purepearl studio",
         authorPrefix: "by",
         authorUrl: "/creators/purepearl-studio",
-        rating: 4.7,
+        rating: 4.5,
         level: "Beginner",
-        studentsCount: "19+",
+        studentsCount: "26+",
         avatars: [student1, student2, student3, student4],
-        price: 28,
+        price: 25,
         priceSuffix: "/lifetime",
-        lessons: "18 Lessons",
-        duration: "3 hours 12 mins",
-        comments: "60 Comments",
-        image: digitalAssetsImg,
+        lessons: "17 Lessons",
+        duration: "2 hours 16 mins",
+        comments: "59 Comments",
+        image: bigDataImg,
+        url: "/courses/power-of-big-data",
+    },
+    {
+        id: 4,
+        title: "Balancing Productivity and Life",
+        author: "purepearl studio",
+        authorPrefix: "by",
+        authorUrl: "/creators/purepearl-studio",
+        rating: 4.5,
+        level: "Beginner",
+        studentsCount: "26+",
+        avatars: [student1, student2, student3, student4],
+        price: 25,
+        priceSuffix: "/lifetime",
+        lessons: "17 Lessons",
+        duration: "2 hours 16 mins",
+        comments: "59 Comments",
+        image: balancingImg,
+        url: "/courses/balancing-productivity",
+    },
+    {
+        id: 5,
+        title: "Mastering Money Management",
+        author: "purepearl studio",
+        authorPrefix: "by",
+        authorUrl: "/creators/purepearl-studio",
+        rating: 4.5,
+        level: "Beginner",
+        studentsCount: "26+",
+        avatars: [student1, student2, student3, student4],
+        price: 25,
+        priceSuffix: "/lifetime",
+        lessons: "17 Lessons",
+        duration: "2 hours 16 mins",
+        comments: "59 Comments",
+        image: moneyManageImg,
+        url: "/courses/mastering-money-management",
+    },
+    {
+        id: 6,
+        title: "From Idea to Startup Success",
+        author: "purepearl studio",
+        authorPrefix: "by",
+        authorUrl: "/creators/purepearl-studio",
+        rating: 4.5,
+        level: "Beginner",
+        studentsCount: "26+",
+        avatars: [student1, student2, student3, student4],
+        price: 25,
+        priceSuffix: "/lifetime",
+        lessons: "17 Lessons",
+        duration: "2 hours 16 mins",
+        comments: "59 Comments",
+        image: startupIdeaImg,
+        url: "/courses/from-idea-to-startup",
     },
 ];
 

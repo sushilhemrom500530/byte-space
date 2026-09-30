@@ -68,7 +68,7 @@ export default function Navbar({ className = "" }: INavbarProps) {
 
     const navBackground = isAtTop
         ? "bg-transparent"
-        : "bg-primary/95 backdrop-blur-md shadow-md";
+        : "bg-primary/95 backdrop-blur-md";
 
     const navTransform = isVisible || mobileMenuOpen
         ? "translate-y-0"
@@ -78,7 +78,7 @@ export default function Navbar({ className = "" }: INavbarProps) {
         <nav
             className={`w-full fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${navBackground} ${navTransform} ${className}`}
         >
-            <div className="h-[100px] px-6 sm:px-10 lg:px-[71px] flex items-center justify-between">
+            <div className={`custom-container ${navTransform ? "h-[75px] " : " h-[100px] "} px-6 sm:px-10 lg:px-[71px] flex items-center justify-between`}>
                 <div className="flex items-center">
                     <Link href="/" className="flex items-center group">
                         <Image
@@ -142,7 +142,7 @@ export default function Navbar({ className = "" }: INavbarProps) {
 
 
             <aside
-                className={`fixed top-0 right-0 bottom-0 w-[290px] sm:w-[320px] max-w-[85vw] h-full max-h-screen bg-primary border-l border-white/10 z-50 md:hidden shadow-2xl flex flex-col justify-between p-6 overflow-y-auto overflow-x-hidden transform transition-transform duration-300 ease-in-out ${mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+                className={`fixed top-0 right-0 bottom-0 w-[290px] sm:w-[320px] max-w-[85vw] h-full max-h-screen bg-primary border-l border-white/10 z-50 md:hidden flex flex-col justify-between p-6 overflow-y-auto overflow-x-hidden transform transition-transform duration-300 ease-in-out ${mobileMenuOpen ? "translate-x-0" : "translate-x-full"
                     }`}
                 aria-label="Mobile navigation"
             >
@@ -202,7 +202,7 @@ export default function Navbar({ className = "" }: INavbarProps) {
                     <Link
                         href="/auth/join-us"
                         onClick={() => setMobileMenuOpen(false)}
-                        className="w-full py-2.5 px-4 text-center rounded-full bg-secondary text-[#111111] font-semibold text-sm hover:brightness-95 transition-all shadow-sm"
+                        className="w-full py-2.5 px-4 text-center rounded-full bg-secondary text-[#111111] font-semibold text-sm hover:brightness-95 transition-all"
                     >
                         Join Us
                     </Link>
