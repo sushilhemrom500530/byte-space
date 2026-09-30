@@ -32,9 +32,8 @@ export default function CourseSidebar({
         typeof price === "number" ? `$${price}` : price.toString().startsWith("$") ? price : `$${price}`;
 
     return (
-        <aside className="w-full bg-white rounded-[24px] sm:rounded-[28px] border border-[#E5E7EB] p-5 sm:p-6 shadow-sm">
-            {/* Header: Lessons Count and Total Duration */}
-            <h2 className="text-xl sm:text-[22px] font-bold text-neutral-900 tracking-tight">
+        <aside className="w-full bg-white rounded-[24px] sm:rounded-[28px] border border-[#E5E7EB] p-5 sm:p-6">
+            <h2 className="common-title">
                 {totalLessons} Lessons ({duration})
             </h2>
 
@@ -46,7 +45,7 @@ export default function CourseSidebar({
                         className="flex items-center justify-between text-sm sm:text-[14px] text-neutral-800"
                     >
                         <div className="flex items-center gap-2.5 truncate pr-2">
-                            <span className="font-semibold text-neutral-500 shrink-0">
+                            <span className="font-semibold text-[#4B4C53] shrink-0">
                                 {lesson.number}
                             </span>
                             <span className="truncate font-medium">{lesson.title}</span>
@@ -62,7 +61,7 @@ export default function CourseSidebar({
                 99 more videos
             </p>
 
-            <p className="mt-4 sm:mt-5 text-xs sm:text-sm text-neutral-500 font-normal leading-relaxed">
+            <p className="mt-4 sm:mt-5 text-xs sm:text-sm text-[#4B4C53] font-normal leading-relaxed">
                 Ready to Dive In? Enroll Now and Start Building Your Digital Future!
             </p>
 
@@ -71,22 +70,19 @@ export default function CourseSidebar({
                 <span className="text-primary font-bold text-3xl sm:text-[34px] tracking-tight">
                     {formattedPrice}
                 </span>
-                <span className="text-neutral-500 text-sm font-normal">
+                <span className="text-[#4B4C53] text-sm font-normal">
                     {priceSuffix}
                 </span>
             </div>
-
-            {/* Enroll Button */}
             <button
                 type="button"
-                className="mt-4 w-full py-3.5 rounded-full bg-secondary text-neutral-950 font-bold text-base hover:brightness-95 active:scale-98 transition-all cursor-pointer text-center shadow-xs"
+                className="mt-4 w-full py-3.5 rounded-full bg-secondary text-neutral-950 font-medium text-base hover:brightness-95 active:scale-98 transition-all cursor-pointer text-center"
             >
                 Enroll Now
             </button>
 
-            {/* This Course Include Section */}
             <div className="mt-6 sm:mt-7">
-                <h3 className="font-bold text-base text-neutral-900 mb-3 sm:mb-3.5">
+                <h3 className="common-title mb-3 sm:mb-3.5">
                     This course include
                 </h3>
                 <ul className="space-y-3">
@@ -98,7 +94,7 @@ export default function CourseSidebar({
                                 className="flex items-center gap-3 text-sm text-neutral-700 font-medium"
                             >
                                 <Icon className="w-4.5 h-4.5 text-primary shrink-0" />
-                                <span>{item.text}</span>
+                                <span className="text-[#4B4C53]">{item.text}</span>
                             </li>
                         );
                     })}
@@ -120,23 +116,23 @@ export default function CourseSidebar({
                         />
                     </div>
                     <div>
-                        <h4 className="font-bold text-sm sm:text-base text-neutral-900 leading-tight">
+                        <h4 className="font-medium text-sm sm:text-base text-neutral-900 leading-tight capitalize">
                             {creatorName}
                         </h4>
-                        <p className="text-xs text-neutral-500 font-normal mt-0.5">
+                        <p className="text-xs text-[#4B4C53] font-normal mt-0.5">
                             {creatorRole}
                         </p>
                     </div>
                 </div>
 
-                <p className="mt-3 text-xs text-neutral-500 font-normal leading-relaxed">
+                <p className="mt-3 text-xs text-[#4B4C53] font-normal leading-relaxed">
                     Ready to Dive In? Enroll Now and Start Building Your Digital Future!
                 </p>
 
                 <div className="mt-3.5">
                     <Link
                         href={creatorUrl}
-                        className="inline-block px-5 py-2 rounded-full border border-neutral-200 text-neutral-800 text-xs sm:text-sm font-semibold hover:bg-neutral-50 transition-colors"
+                        className="inline-block px-5 py-2 rounded-full border border-neutral-200 text-neutral-800 text-xs sm:text-sm hover:bg-neutral-50 transition-colors"
                     >
                         See Full Profile
                     </Link>
