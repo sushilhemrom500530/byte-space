@@ -32,14 +32,14 @@ export default function CourseSidebar({
         typeof price === "number" ? `$${price}` : price.toString().startsWith("$") ? price : `$${price}`;
 
     return (
-        <aside className="w-full bg-white rounded-[24px] border border-[#E5E7EB] p-6 sm:p-7 shadow-sm">
+        <aside className="w-full bg-white rounded-[24px] sm:rounded-[28px] border border-[#E5E7EB] p-5 sm:p-6 shadow-sm">
             {/* Header: Lessons Count and Total Duration */}
             <h2 className="text-xl sm:text-[22px] font-bold text-neutral-900 tracking-tight">
                 {totalLessons} Lessons ({duration})
             </h2>
 
             {/* Top Lessons Preview List */}
-            <div className="mt-5 space-y-3.5">
+            <div className="mt-4 sm:mt-5 space-y-3">
                 {previewLessons.map((lesson) => (
                     <div
                         key={lesson.number}
@@ -62,7 +62,7 @@ export default function CourseSidebar({
                 99 more videos
             </p>
 
-            <p className="mt-5 text-xs sm:text-sm text-neutral-500 font-normal leading-relaxed">
+            <p className="mt-4 sm:mt-5 text-xs sm:text-sm text-neutral-500 font-normal leading-relaxed">
                 Ready to Dive In? Enroll Now and Start Building Your Digital Future!
             </p>
 
@@ -79,14 +79,14 @@ export default function CourseSidebar({
             {/* Enroll Button */}
             <button
                 type="button"
-                className="mt-4 w-full py-3.5 rounded-full bg-secondary text-neutral-950 font-semibold text-base hover:brightness-95 active:scale-98 transition-all cursor-pointer text-center shadow-xs"
+                className="mt-4 w-full py-3.5 rounded-full bg-secondary text-neutral-950 font-bold text-base hover:brightness-95 active:scale-98 transition-all cursor-pointer text-center shadow-xs"
             >
                 Enroll Now
             </button>
 
             {/* This Course Include Section */}
-            <div className="mt-7">
-                <h3 className="font-bold text-base text-neutral-900 mb-3.5">
+            <div className="mt-6 sm:mt-7">
+                <h3 className="font-bold text-base text-neutral-900 mb-3 sm:mb-3.5">
                     This course include
                 </h3>
                 <ul className="space-y-3">
@@ -105,7 +105,7 @@ export default function CourseSidebar({
                 </ul>
             </div>
 
-            <div className="h-[1px] bg-neutral-100 my-6" />
+            <div className="h-[1px] bg-neutral-100 my-5 sm:my-6" />
 
             {/* Creator Information Box */}
             <div className="flex flex-col">
@@ -129,16 +129,18 @@ export default function CourseSidebar({
                     </div>
                 </div>
 
-                <p className="mt-3.5 text-xs text-neutral-500 font-normal leading-relaxed">
+                <p className="mt-3 text-xs text-neutral-500 font-normal leading-relaxed">
                     Ready to Dive In? Enroll Now and Start Building Your Digital Future!
                 </p>
 
-                <Link
-                    href={creatorUrl}
-                    className="mt-4 w-full py-2.5 rounded-full border border-neutral-200 text-neutral-800 text-xs sm:text-sm font-semibold hover:bg-neutral-50 transition-colors text-center inline-block"
-                >
-                    See Full Profile
-                </Link>
+                <div className="mt-3.5">
+                    <Link
+                        href={creatorUrl}
+                        className="inline-block px-5 py-2 rounded-full border border-neutral-200 text-neutral-800 text-xs sm:text-sm font-semibold hover:bg-neutral-50 transition-colors"
+                    >
+                        See Full Profile
+                    </Link>
+                </div>
             </div>
         </aside>
     );

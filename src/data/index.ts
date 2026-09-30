@@ -1,12 +1,12 @@
 import { INavItem, IFooterColumn, IFooterLink } from "@/types";
 
 import coursesJson from "./courses.json";
-import learnFigmaImg from "@/assets/skills/learn-figma.png";
-import bigDataImg from "@/assets/skills/big-data.png";
-import digitalAssetsImg from "@/assets/skills/digital-assets.png";
-import balancingImg from "@/assets/skills/balancing.png";
-import moneyManageImg from "@/assets/skills/mastaring-money.png";
-import startupIdeaImg from "@/assets/skills/startup-idea.png";
+import learnFigmaImg from "@/assets/skills/figma.jpg";
+import bigDataImg from "@/assets/skills/big-data.jpg";
+import digitalAssetsImg from "@/assets/skills/digital-assets.jpg";
+import balancingImg from "@/assets/skills/balancing.jpg";
+import moneyManageImg from "@/assets/skills/money-manage.jpg";
+import startupIdeaImg from "@/assets/skills/startup-success.jpg";
 import student1 from "@/assets/avatars/student-1.png";
 import student2 from "@/assets/avatars/student-2.png";
 import student3 from "@/assets/avatars/student-3.png";
