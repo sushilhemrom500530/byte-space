@@ -1,4 +1,4 @@
-import Image from "next/image";
+import "./index.css";
 import top_yellow_arrow from "@/assets/join-top-arrow.png";
 import bottom_yellow_arrow from "@/assets/join-bottom-arrow.png";
 import yellow_triangle from "@/assets/yellow-triangle.png";
@@ -9,78 +9,27 @@ import white_arrow from "@/assets/White-Arrow-Frame.png";
 
 export default function JoinUsSection() {
     return (
-        <section className="join-us-section bg-primary-grid relative w-full overflow-hidden py-16 sm:py-20 lg:py-28 min-h-[460px] sm:min-h-[500px] lg:min-h-[520px] flex items-center justify-center select-none">
-            {/* top-left yellow wave */}
-            <div className="absolute top-0 left-0 w-[120px] sm:w-[170px] lg:w-[220px] xl:w-[260px] pointer-events-none select-none z-0">
-                <Image
-                    src={top_yellow_arrow}
-                    alt="Decorative yellow wave"
-                    className="w-full h-auto object-contain"
-                    priority
-                />
+        <section
+            style={{
+                "--join-top-arrow": `url('${top_yellow_arrow.src}')`,
+                "--join-white-arrow": `url('${white_arrow.src}')`,
+                "--join-white-triangle": `url('${white_triangle.src}')`,
+                "--join-yellow-zero": `url('${yellow_zero.src}')`,
+                "--join-yellow-triangle": `url('${yellow_triangle.src}')`,
+                "--join-right-rubar": `url('${right_side_rubar.src}')`,
+                "--join-bottom-arrow": `url('${bottom_yellow_arrow.src}')`,
+            } as React.CSSProperties}
+            className="join-us-section bg-primary-grid relative w-full overflow-hidden py-16 sm:py-20 lg:py-28 min-h-[460px] sm:min-h-[500px] lg:min-h-[520px] flex items-center justify-center select-none"
+        >
+            {/* floating shapes */}
+            <div className="join-shapes-canvas pointer-events-none select-none" aria-hidden="true">
+                <span className="join-shape-top-left" />
+                <span className="join-shape-top-right" />
+                <span className="join-shape-bottom-left" />
+                <span className="join-shape-bottom-right" />
             </div>
 
-            {/* top-left */}
-            <div className="absolute top-4 sm:top-6 lg:top-8 left-[13%] sm:left-[14%] lg:left-[15%] w-[50px] sm:w-[70px] lg:w-[90px] xl:w-[105px] pointer-events-none select-none z-0 hidden sm:block">
-                <Image
-                    src={white_arrow}
-                    alt="Decorative white spiral"
-                    className="w-full h-auto object-contain"
-                    priority
-                />
-            </div>
-
-            {/* bottom-left triangle */}
-            <div className="absolute bottom-8 sm:bottom-12 lg:bottom-14 left-0 sm:left-1 lg:left-2 w-[55px] sm:w-[75px] lg:w-[95px] xl:w-[110px] pointer-events-none select-none z-0">
-                <Image
-                    src={white_triangle}
-                    alt="Decorative white cone"
-                    className="w-full h-auto object-contain"
-                    priority
-                />
-            </div>
-
-            {/* bottom-left   */}
-            <div className="absolute bottom-0 left-[6%] sm:left-[7%] lg:left-[8%] w-[110px] sm:w-[160px] lg:w-[210px] xl:w-[250px] pointer-events-none select-none z-0">
-                <Image
-                    src={yellow_zero}
-                    alt="Decorative yellow ring"
-                    className="w-full h-auto object-contain"
-                    priority
-                />
-            </div>
-
-            {/* top-right yellow pyramid */}
-            <div className="absolute top-4 sm:top-6 lg:top-8 right-[14%] sm:right-[15%] lg:right-[16%] w-[55px] sm:w-[75px] lg:w-[100px] xl:w-[120px] pointer-events-none select-none z-0 hidden sm:block">
-                <Image
-                    src={yellow_triangle}
-                    alt="Decorative yellow pyramid"
-                    className="w-full h-auto object-contain"
-                    priority
-                />
-            </div>
-
-            {/* top-right white rounded block */}
-            <div className="absolute top-0 right-0 w-[95px] sm:w-[135px] lg:w-[175px] xl:w-[205px] pointer-events-none select-none z-0">
-                <Image
-                    src={right_side_rubar}
-                    alt="Decorative white block"
-                    className="w-full h-auto object-contain"
-                    priority
-                />
-            </div>
-
-            {/* bottom-right yellow spiral */}
-            <div className="absolute bottom-0 right-[2%] sm:right-[3%] lg:right-[4%] w-[110px] sm:w-[150px] lg:w-[195px] xl:w-[230px] pointer-events-none select-none z-0">
-                <Image
-                    src={bottom_yellow_arrow}
-                    alt="Decorative yellow spiral"
-                    className="w-full h-auto object-contain"
-                    priority
-                />
-            </div>
-
-            {/* Center Content */}
+            {/* center content */}
             <div className="relative z-10 custom-container px-4 text-center flex flex-col items-center justify-center max-w-5xl mx-auto">
                 <h2 className="text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-bold text-white tracking-tight leading-[1.18] max-w-3xl mx-auto">
                     Unlock Your Potential as a <br className="hidden sm:inline" />

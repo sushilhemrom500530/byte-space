@@ -1,0 +1,213 @@
+.join-shapes-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* floating shapes */
+.join-shape-top-left::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 120px;
+    height: 101px;
+    background-image: var(--join-top-arrow);
+    background-repeat: no-repeat;
+    background-size: contain;
+    pointer-events: none;
+}
+
+.join-shape-top-left::after {
+    content: "";
+    display: none;
+    position: absolute;
+    top: 16px;
+    left: 13%;
+    width: 50px;
+    height: 52px;
+    background-image: var(--join-white-arrow);
+    background-repeat: no-repeat;
+    background-size: contain;
+    pointer-events: none;
+}
+
+.join-shape-bottom-left::before {
+    content: "";
+    position: absolute;
+    bottom: 32px;
+    left: 0;
+    width: 55px;
+    height: 55px;
+    background-image: var(--join-white-triangle);
+    background-repeat: no-repeat;
+    background-size: contain;
+    pointer-events: none;
+}
+
+.join-shape-bottom-left::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 6%;
+    width: 110px;
+    height: 60px;
+    background-image: var(--join-yellow-zero);
+    background-repeat: no-repeat;
+    background-size: contain;
+    pointer-events: none;
+}
+
+.join-shape-top-right::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 95px;
+    height: 162px;
+    background-image: var(--join-right-rubar);
+    background-repeat: no-repeat;
+    background-size: contain;
+    pointer-events: none;
+}
+
+.join-shape-top-right::after {
+    content: "";
+    display: none;
+    position: absolute;
+    top: 16px;
+    right: 14%;
+    width: 55px;
+    height: 55px;
+    background-image: var(--join-yellow-triangle);
+    background-repeat: no-repeat;
+    background-size: contain;
+    pointer-events: none;
+}
+
+.join-shape-bottom-right::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 2%;
+    width: 110px;
+    height: 66px;
+    background-image: var(--join-bottom-arrow);
+    background-repeat: no-repeat;
+    background-size: contain;
+    pointer-events: none;
+}
+
+@media (min-width: 640px) {
+    .join-shape-top-left::before {
+        width: 170px;
+        height: 143px;
+    }
+    .join-shape-top-left::after {
+        display: block;
+        top: 24px;
+        left: 14%;
+        width: 70px;
+        height: 73px;
+    }
+    .join-shape-bottom-left::before {
+        bottom: 48px;
+        left: 4px;
+        width: 75px;
+        height: 75px;
+    }
+    .join-shape-bottom-left::after {
+        left: 7%;
+        width: 160px;
+        height: 88px;
+    }
+    .join-shape-top-right::before {
+        width: 135px;
+        height: 230px;
+    }
+    .join-shape-top-right::after {
+        display: block;
+        top: 24px;
+        right: 15%;
+        width: 75px;
+        height: 75px;
+    }
+    .join-shape-bottom-right::before {
+        right: 3%;
+        width: 150px;
+        height: 89px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .join-shape-top-left::before {
+        width: 220px;
+        height: 185px;
+    }
+    .join-shape-top-left::after {
+        top: 32px;
+        left: 15%;
+        width: 90px;
+        height: 94px;
+    }
+    .join-shape-bottom-left::before {
+        bottom: 56px;
+        left: 8px;
+        width: 95px;
+        height: 95px;
+    }
+    .join-shape-bottom-left::after {
+        left: 8%;
+        width: 210px;
+        height: 115px;
+    }
+    .join-shape-top-right::before {
+        width: 175px;
+        height: 298px;
+    }
+    .join-shape-top-right::after {
+        top: 32px;
+        right: 16%;
+        width: 100px;
+        height: 100px;
+    }
+    .join-shape-bottom-right::before {
+        right: 4%;
+        width: 195px;
+        height: 116px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .join-shape-top-left::before {
+        width: 260px;
+        height: 219px;
+    }
+    .join-shape-top-left::after {
+        width: 105px;
+        height: 110px;
+    }
+    .join-shape-bottom-left::before {
+        width: 110px;
+        height: 109px;
+    }
+    .join-shape-bottom-left::after {
+        width: 250px;
+        height: 137px;
+    }
+    .join-shape-top-right::before {
+        width: 205px;
+        height: 350px;
+    }
+    .join-shape-top-right::after {
+        width: 120px;
+        height: 119px;
+    }
+    .join-shape-bottom-right::before {
+        width: 230px;
+        height: 137px;
+    }
+}
