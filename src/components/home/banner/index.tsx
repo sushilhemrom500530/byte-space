@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import "./index.css";
 
@@ -12,6 +16,19 @@ import bottom_user from "@/assets/Banner-User.png";
 import students_group from "@/assets/avatars/students-group.png";
 
 export default function BannerSection() {
+    const router = useRouter();
+    const [searchQuery, setSearchQuery] = useState("");
+
+    const handleSearch = (e?: React.SyntheticEvent) => {
+        if (e) e.preventDefault();
+        const trimmed = searchQuery.trim();
+        if (trimmed) {
+            router.push(`/courses?search=${encodeURIComponent(trimmed)}`);
+        } else {
+            router.push("/courses");
+        }
+    };
+
     return (
         <section
             style={{
@@ -42,20 +59,26 @@ export default function BannerSection() {
                 </p>
 
                 <div className="mt-7 sm:mt-8 mx-auto max-w-[520px] sm:max-w-[620px] w-full">
-                    <div className="flex items-center bg-white rounded-full p-1.5 sm:p-2 pl-5 sm:pl-6 shadow-2xl shadow-black/15">
+                    <form
+                        onSubmit={handleSearch}
+                        className="flex items-center bg-white rounded-full p-1.5 sm:p-2 pl-5 sm:pl-6 shadow-2xl shadow-black/15"
+                    >
                         <span className="banner-search-icon mr-3" aria-hidden="true" />
                         <input
                             type="text"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
                             placeholder="Course, topic, creator"
                             className="w-full bg-transparent text-gray-800 placeholder:text-gray-400 text-sm sm:text-[15px] focus:outline-none pr-3"
                         />
                         <button
-                            type="button"
-                            className="bg-[#D4FB20] hover:bg-[#c4eb16] active:scale-95 text-black font-semibold text-sm sm:text-[15px] px-6 sm:px-8 py-2.5 sm:py-3 rounded-full transition-all duration-200 cursor-pointer flex-shrink-0 shadow-sm"
+                            type="submit"
+                            onClick={handleSearch}
+                            className="bg-[#D4FB20] hover:bg-[#c4eb16] text-black font-semibold text-sm sm:text-[15px] px-6 sm:px-8 py-2.5 sm:py-3 rounded-full transition-all duration-200 cursor-pointer flex-shrink-0 shadow-sm"
                         >
                             Search
                         </button>
-                    </div>
+                    </form>
                 </div>
             </div>
 

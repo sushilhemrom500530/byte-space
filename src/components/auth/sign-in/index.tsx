@@ -9,7 +9,7 @@ import FormField from "@/components/form";
 import { ILoginFormInputs } from "../../../types";
 
 
-export default function Login() {
+export default function SignIn() {
     const {
         register,
         handleSubmit,

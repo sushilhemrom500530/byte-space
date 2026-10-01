@@ -63,3 +63,11 @@ export interface ITestimonialCardProps {
     avatar: string | StaticImageData;
     className?: string;
 }
+
+
+
+export interface IRegisterFormInputs {
+    fullName: string;
+    email: string;
+    password: string;
+}

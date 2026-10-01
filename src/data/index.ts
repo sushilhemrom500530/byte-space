@@ -44,7 +44,7 @@ export const authItems: INavItem[] = [
     {
         id: 2,
         title: "Join Us",
-        path: "/auth/join-us",
+        path: "/auth/sign-up",
     },
 ];
 

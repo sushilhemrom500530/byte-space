@@ -53,7 +53,7 @@ export default function DiscoverSection() {
     }, [activeTag]);
 
     return (
-        <section className="w-full bg-white py-14 sm:py-18 lg:py-24 select-none">
+        <section id="courses" className="w-full bg-white py-14 sm:py-18 lg:py-24 select-none">
             <div className="custom-container">
                 {/* Header */}
                 <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10 lg:mb-12">

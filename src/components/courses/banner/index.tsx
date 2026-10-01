@@ -100,7 +100,7 @@ export default function CoursesBanner({
                         <button
                             type="button"
                             onClick={() => setIsDropdownOpen((prev) => !prev)}
-                            className="h-[48px] sm:h-[50px] lg:h-[52px] bg-secondary text-neutral-950 font-semibold text-sm sm:text-[15px] px-5 sm:px-6 rounded-full flex items-center gap-1.5 sm:gap-2 hover:brightness-95 active:scale-95 transition-all cursor-pointer shadow-xs whitespace-nowrap"
+                            className="h-[48px] sm:h-[50px] lg:h-[52px] bg-secondary text-neutral-950 font-semibold text-sm sm:text-[15px] px-5 sm:px-6 rounded-full flex items-center gap-1.5 sm:gap-2 hover:brightness-95 transition-all cursor-pointer shadow-xs whitespace-nowrap"
                             aria-expanded={isDropdownOpen}
                             aria-haspopup="listbox"
                         >

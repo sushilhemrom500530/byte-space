@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import CoursesBanner from "@/components/courses/banner";
 import Filter from "@/components/courses/filter";
 import { allCoursesList } from "@/data/coursesList";
@@ -19,6 +19,16 @@ export default function Courses() {
     const [currentPage, setCurrentPage] = useState(1);
 
     const catalogRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const params = new URLSearchParams(window.location.search);
+            const query = params.get("search") || params.get("q");
+            if (query) {
+                setSearchQuery(query);
+            }
+        }
+    }, []);
 
     const filteredCourses = useMemo(() => {
         let result = [...allCoursesList];

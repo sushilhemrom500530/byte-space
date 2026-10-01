@@ -75,64 +75,67 @@ export default function Navbar({ className = "" }: INavbarProps) {
         : "-translate-y-full";
 
     return (
-        <nav
-            className={`w-full fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${navBackground} ${navTransform} ${className}`}
-        >
-            <div className={`custom-container ${navTransform ? "h-[75px] " : " h-[100px] "} px-6 sm:px-10 lg:px-[71px] flex items-center justify-between`}>
-                <div className="flex items-center">
-                    <Link href="/" className="flex items-center group">
-                        <Image
-                            src={HeaderLogo}
-                            alt="ByteSpace"
-                            width={154}
-                            height={33}
-                            priority
-                            className="h-7 sm:h-8 w-auto"
-                        />
-                    </Link>
-                </div>
-
-                <div className="hidden md:flex items-center gap-8 lg:gap-10 text-[15px] font-medium text-white/90">
-                    {navItems.map((item) => (
-                        <Link
-                            key={item.id || item.path}
-                            href={item.path}
-                            className="hover:text-white transition-colors duration-150"
-                        >
-                            {item.title}
+        <>
+            <nav
+                className={`w-full fixed top-0 left-0 right-0 z-40 transition-all duration-500 ease-in-out ${navBackground} ${navTransform} ${className}`}
+            >
+                <div className={`custom-container ${isAtTop ? "h-[100px]" : "h-[75px]"} transition-all duration-300 ease-in-out px-6 sm:px-10 lg:px-[71px] flex items-center justify-between`}>
+                    <div className="flex items-center">
+                        <Link href="/" className="flex items-center group">
+                            <Image
+                                src={HeaderLogo}
+                                alt="ByteSpace"
+                                width={154}
+                                height={33}
+                                priority
+                                className="h-7 sm:h-8 w-auto"
+                            />
                         </Link>
-                    ))}
-                </div>
-                <div className="flex items-center gap-6 sm:gap-7 text-[15px] font-medium text-white/90">
-                    {authItems.map((item) => (
+                    </div>
+
+                    <div className="hidden md:flex items-center gap-8 lg:gap-10 text-[15px] font-medium text-white/90">
+                        {navItems.map((item) => (
+                            <Link
+                                key={item.id || item.path}
+                                href={item.path}
+                                className="hover:text-white transition-colors duration-150"
+                            >
+                                {item.title}
+                            </Link>
+                        ))}
+                    </div>
+                    <div className="flex items-center gap-6 sm:gap-7 text-[15px] font-medium text-white/90">
+                        {authItems.map((item) => (
+                            <Link
+                                key={item.id || item.path}
+                                href={item.path}
+                                className="hidden sm:inline-block hover:text-white transition-colors duration-150"
+                            >
+                                {item.title}
+                            </Link>
+                        ))}
                         <Link
-                            key={item.id || item.path}
-                            href={item.path}
-                            className="hidden sm:inline-block hover:text-white transition-colors duration-150"
+                            href="/cart"
+                            aria-label="Cart"
+                            className="text-white hover:text-white/80 transition-colors p-1 flex items-center"
                         >
-                            {item.title}
+                            <HiOutlineShoppingBag className="w-5 h-5 stroke-[1.8]" />
                         </Link>
-                    ))}
-                    <Link
-                        href="/cart"
-                        aria-label="Cart"
-                        className="text-white hover:text-white/80 transition-colors p-1 flex items-center"
-                    >
-                        <HiOutlineShoppingBag className="w-5 h-5 stroke-[1.8]" />
-                    </Link>
 
-                    {/* Mobile Menu Button */}
-                    <button
-                        type="button"
-                        onClick={() => setMobileMenuOpen(true)}
-                        className="md:hidden text-white p-2 -mr-2 rounded-full hover:bg-white/10 focus:outline-none transition-colors cursor-pointer"
-                        aria-label="Open navigation menu"
-                    >
-                        <HiOutlineBars3 className="w-6 h-6" />
-                    </button>
+                        {/* Mobile Menu Button */}
+                        <button
+                            type="button"
+                            onClick={() => setMobileMenuOpen(true)}
+                            className="md:hidden text-white p-2 -mr-2 rounded-full hover:bg-white/10 focus:outline-none transition-colors cursor-pointer"
+                            aria-label="Open navigation menu"
+                        >
+                            <HiOutlineBars3 className="w-6 h-6" />
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </nav>
 
+            {/* Mobile Drawer Overlay */}
             <div
                 className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-50 md:hidden transition-opacity duration-300 ${mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
                     }`}
@@ -140,9 +143,9 @@ export default function Navbar({ className = "" }: INavbarProps) {
                 aria-hidden="true"
             />
 
-
+            {/* Mobile Drawer Aside */}
             <aside
-                className={`fixed top-0 right-0 bottom-0 w-[290px] sm:w-[320px] max-w-[85vw] h-full max-h-screen bg-primary border-l border-white/10 z-50 md:hidden flex flex-col justify-between p-6 overflow-y-auto overflow-x-hidden transform transition-transform duration-300 ease-in-out ${mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+                className={`fixed top-0 right-0 bottom-0 w-[290px] sm:w-[320px] max-w-[85vw] h-full h-[100dvh] bg-primary border-l border-white/10 z-50 md:hidden flex flex-col justify-between p-6 overflow-y-auto overflow-x-hidden transform transition-transform duration-300 ease-in-out ${mobileMenuOpen ? "translate-x-0" : "translate-x-full"
                     }`}
                 aria-label="Mobile navigation"
             >
@@ -208,6 +211,6 @@ export default function Navbar({ className = "" }: INavbarProps) {
                     </Link>
                 </div>
             </aside>
-        </nav>
+        </>
     );
 }

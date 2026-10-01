@@ -3,14 +3,9 @@
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import FormField from "@/components/form";
+import { IRegisterFormInputs } from "@/types";
 
-interface IRegisterFormInputs {
-    fullName: string;
-    email: string;
-    password: string;
-}
-
-export default function Register() {
+export default function SignUp() {
     const {
         register,
         handleSubmit,
