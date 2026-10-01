@@ -3,12 +3,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import HeaderLogo from "@/assets/Header_Logo.svg";
 import { INavbarProps } from "@/types";
 import { navItems, authItems } from "@/data";
 import { HiOutlineShoppingBag, HiOutlineBars3, HiOutlineXMark } from "react-icons/hi2";
 
 export default function Navbar({ className = "" }: INavbarProps) {
+    const pathname = usePathname();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
     const [isAtTop, setIsAtTop] = useState(true);
@@ -68,7 +70,7 @@ export default function Navbar({ className = "" }: INavbarProps) {
 
     const navBackground = isAtTop
         ? "bg-transparent"
-        : "bg-primary/95 backdrop-blur-md";
+        : "bg-primary/80 backdrop-blur-xl backdrop-saturate-150";
 
     const navTransform = isVisible || mobileMenuOpen
         ? "translate-y-0"
@@ -94,30 +96,48 @@ export default function Navbar({ className = "" }: INavbarProps) {
                     </div>
 
                     <div className="hidden md:flex items-center gap-8 lg:gap-10 text-[15px] font-medium text-white/90">
-                        {navItems.map((item) => (
-                            <Link
-                                key={item.id || item.path}
-                                href={item.path}
-                                className="hover:text-white transition-colors duration-150"
-                            >
-                                {item.title}
-                            </Link>
-                        ))}
+                        {navItems.map((item) => {
+                            const isActive =
+                                item.path === "/"
+                                    ? pathname === "/"
+                                    : pathname.startsWith(item.path);
+                            return (
+                                <Link
+                                    key={item.id || item.path}
+                                    href={item.path}
+                                    className={`transition-colors duration-150 ${isActive
+                                        ? "text-secondary font-medium"
+                                        : "hover:text-white"
+                                        }`}
+                                >
+                                    {item.title}
+                                </Link>
+                            );
+                        })}
                     </div>
                     <div className="flex items-center gap-6 sm:gap-7 text-[15px] font-medium text-white/90">
-                        {authItems.map((item) => (
-                            <Link
-                                key={item.id || item.path}
-                                href={item.path}
-                                className="hidden sm:inline-block hover:text-white transition-colors duration-150"
-                            >
-                                {item.title}
-                            </Link>
-                        ))}
+                        {authItems.map((item) => {
+                            const isActive = pathname === item.path;
+                            return (
+                                <Link
+                                    key={item.id || item.path}
+                                    href={item.path}
+                                    className={`hidden sm:inline-block transition-colors duration-150 ${isActive
+                                        ? "text-secondary font-medium"
+                                        : "hover:text-white"
+                                        }`}
+                                >
+                                    {item.title}
+                                </Link>
+                            );
+                        })}
                         <Link
                             href="/cart"
                             aria-label="Cart"
-                            className="text-white hover:text-white/80 transition-colors p-1 flex items-center"
+                            className={`p-1 flex items-center transition-colors ${pathname === "/cart"
+                                ? "text-secondary"
+                                : "text-white hover:text-white/80"
+                                }`}
                         >
                             <HiOutlineShoppingBag className="w-5 h-5 stroke-[1.8]" />
                         </Link>
@@ -174,20 +194,32 @@ export default function Navbar({ className = "" }: INavbarProps) {
                         </button>
                     </div>
                     <nav className="flex flex-col gap-1 py-4 sm:py-6">
-                        {navItems.map((item) => (
-                            <Link
-                                key={item.id || item.path}
-                                href={item.path}
-                                onClick={() => setMobileMenuOpen(false)}
-                                className="px-4 py-3 rounded-lg text-base font-medium text-white/90 hover:text-secondary hover:bg-white/5 transition-all"
-                            >
-                                {item.title}
-                            </Link>
-                        ))}
+                        {navItems.map((item) => {
+                            const isActive =
+                                item.path === "/"
+                                    ? pathname === "/"
+                                    : pathname.startsWith(item.path);
+                            return (
+                                <Link
+                                    key={item.id || item.path}
+                                    href={item.path}
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    className={`px-4 py-3 rounded-lg text-base font-medium transition-all ${isActive
+                                        ? "text-secondary font-medium bg-white/10"
+                                        : "text-white/90 hover:text-secondary hover:bg-white/5"
+                                        }`}
+                                >
+                                    {item.title}
+                                </Link>
+                            );
+                        })}
                         <Link
                             href="/cart"
                             onClick={() => setMobileMenuOpen(false)}
-                            className="flex items-center gap-3 px-4 py-3 rounded-lg text-base font-medium text-white/90 hover:text-secondary hover:bg-white/5 transition-all"
+                            className={`flex items-center gap-3 px-4 py-3 rounded-lg text-base font-medium transition-all ${pathname === "/cart"
+                                ? "text-secondary font-medium bg-white/10"
+                                : "text-white/90 hover:text-secondary hover:bg-white/5"
+                                }`}
                         >
                             <HiOutlineShoppingBag className="w-5 h-5 stroke-[1.8]" />
                             <span>Cart</span>
@@ -198,14 +230,17 @@ export default function Navbar({ className = "" }: INavbarProps) {
                     <Link
                         href="/auth/sign-in"
                         onClick={() => setMobileMenuOpen(false)}
-                        className="w-full py-2.5 px-4 text-center rounded-full border border-white/20 text-white font-medium text-sm hover:bg-white/10 transition-colors"
+                        className={`w-full py-2.5 px-4 text-center rounded-full border border-white/20 font-medium text-sm transition-colors ${pathname === "/auth/sign-in"
+                            ? "text-secondary border-secondary bg-white/10"
+                            : "text-white hover:bg-white/10"
+                            }`}
                     >
                         Sign In
                     </Link>
                     <Link
-                        href="/auth/join-us"
+                        href="/auth/sign-up"
                         onClick={() => setMobileMenuOpen(false)}
-                        className="w-full py-2.5 px-4 text-center rounded-full bg-secondary text-[#111111] font-semibold text-sm hover:brightness-95 transition-all"
+                        className="w-full py-2.5 px-4 text-center rounded-full bg-secondary text-[#111111] font-medium text-sm hover:brightness-95 transition-all"
                     >
                         Join Us
                     </Link>
