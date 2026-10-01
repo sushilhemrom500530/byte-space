@@ -24,14 +24,14 @@ export default function BannerSection() {
             } as React.CSSProperties}
             className="banner-section relative w-full bg-primary-grid overflow-hidden pt-28 sm:pt-32 lg:pt-36 pb-0 select-none"
         >
-            {/* ================= 6 FLOATING 3D SHAPES VIA PSEUDO-CLASSES ================= */}
+            {/* floating shapes */}
             <div className="banner-shapes-canvas pointer-events-none select-none" aria-hidden="true">
                 <span className="banner-shape-top" />
                 <span className="banner-shape-mid" />
                 <span className="banner-shape-bottom" />
             </div>
 
-            {/* ================= HERO TEXT & SEARCH ================= */}
+            {/* hero content */}
             <div className="relative z-20 max-w-5xl mx-auto px-4 text-center">
                 <h1 className="text-4xl sm:text-5xl lg:text-[56px] xl:text-[62px] font-bold text-white tracking-tight leading-[1.12]">
                     Get Access to Hundreds <br /> Courses Available
@@ -41,10 +41,8 @@ export default function BannerSection() {
                     Unlock your creativity, gain valuable knowledge, and grow your business with our wide range of courses.
                 </p>
 
-                {/* Search Bar */}
                 <div className="mt-7 sm:mt-8 mx-auto max-w-[520px] sm:max-w-[620px] w-full">
                     <div className="flex items-center bg-white rounded-full p-1.5 sm:p-2 pl-5 sm:pl-6 shadow-2xl shadow-black/15">
-                        {/* Search Icon rendered via Pseudo-Class in index.css */}
                         <span className="banner-search-icon mr-3" aria-hidden="true" />
                         <input
                             type="text"
@@ -61,11 +59,9 @@ export default function BannerSection() {
                 </div>
             </div>
 
-            {/* ================= STUDENT VISUAL & FLOATING BADGES ================= */}
+            {/* student visual */}
             <div className="relative mt-2 sm:mt-3 w-full flex justify-center items-end">
-                {/* Visual Stage Container */}
                 <div className="relative w-full max-w-[1360px] flex justify-center items-end">
-                    {/* Lime Arch Background */}
                     <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[720px] sm:w-[940px] md:w-[1080px] lg:w-[1200px] xl:w-[1260px] pointer-events-none select-none z-0">
                         <Image
                             src={yellow_rounded_shape}
@@ -75,7 +71,6 @@ export default function BannerSection() {
                         />
                     </div>
 
-                    {/* Student in center with Badges anchored directly to him */}
                     <div className="relative z-10 w-[380px] sm:w-[500px] md:w-[580px] lg:w-[680px] xl:w-[730px] flex justify-center pointer-events-none select-none">
                         <Image
                             src={bottom_user}
@@ -84,8 +79,6 @@ export default function BannerSection() {
                             priority
                         />
 
-                        {/* ---------------- 3 FLOATING BADGES ---------------- */}
-                        {/* Badge 1: UI/UX Design (Left of student's chin/collar) */}
                         <div className="banner-card-uiux select-none">
                             <h3 className="font-bold text-gray-900 text-xs sm:text-sm lg:text-[15px] tracking-tight whitespace-nowrap">
                                 UI/UX Design
@@ -95,14 +88,12 @@ export default function BannerSection() {
                             </p>
                         </div>
 
-                        {/* Badge 2: Happy Students (Left of laptop/hands) */}
                         <div className="banner-card-students select-none">
                             <span className="font-bold text-gray-900 text-xs sm:text-sm lg:text-[14px] block">
                                 Happy Students
                             </span>
                             <div className="flex items-center gap-1.5 mt-0.5">
                                 <span className="text-[10px] sm:text-xs font-semibold text-gray-700">4.5 (240)</span>
-                                {/* Star Icon rendered via Pseudo-Class in index.css */}
                                 <span className="banner-star-icon" aria-hidden="true" />
                             </div>
                             <div className="mt-2">
@@ -115,7 +106,6 @@ export default function BannerSection() {
                             </div>
                         </div>
 
-                        {/* Badge 3: Learning Progress (Right of student's shoulder) */}
                         <div className="banner-card-progress select-none">
                             <span className="text-[11px] sm:text-xs font-medium text-gray-600 block">
                                 Learning Progress

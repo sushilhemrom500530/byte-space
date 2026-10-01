@@ -1,7 +1,3 @@
-/* ========================================================
-   Banner Section - Pixel-Perfect Styles & Pseudo-Classes
-   ======================================================== */
-
 .banner-section {
     position: relative;
     width: 100%;
@@ -9,7 +5,6 @@
     overflow: hidden;
 }
 
-/* Background Shapes Canvas Layer */
 .banner-shapes-canvas {
     position: absolute;
     inset: 0;
@@ -19,9 +14,7 @@
     z-index: 5;
 }
 
-/* ---------------- FLOATING 3D SHAPES ---------------- */
-
-/* Top-Left Lime Zigzag Wave */
+/* floating shapes */
 .banner-shape-top::before {
     content: "";
     position: absolute;
@@ -36,7 +29,6 @@
     pointer-events: none;
 }
 
-/* Top-Right Lime Cylinder */
 .banner-shape-top::after {
     content: "";
     position: absolute;
@@ -51,7 +43,6 @@
     pointer-events: none;
 }
 
-/* Mid-Left Small White Spiral */
 .banner-shape-mid::before {
     content: "";
     position: absolute;
@@ -66,7 +57,6 @@
     pointer-events: none;
 }
 
-/* Mid-Right White Triangle */
 .banner-shape-mid::after {
     content: "";
     position: absolute;
@@ -81,7 +71,6 @@
     pointer-events: none;
 }
 
-/* Bottom-Left White Donut / Torus */
 .banner-shape-bottom::before {
     content: "";
     position: absolute;
@@ -96,7 +85,6 @@
     pointer-events: none;
 }
 
-/* Bottom-Right Big White Spiral */
 .banner-shape-bottom::after {
     content: "";
     position: absolute;
@@ -111,7 +99,6 @@
     pointer-events: none;
 }
 
-/* Breakpoint 640px */
 @media (min-width: 640px) {
     .banner-shape-top::before {
         top: 16%;
@@ -151,7 +138,6 @@
     }
 }
 
-/* Breakpoint 1024px */
 @media (min-width: 1024px) {
     .banner-shape-top::before {
         top: 16%;
@@ -191,7 +177,6 @@
     }
 }
 
-/* Breakpoint 1280px */
 @media (min-width: 1280px) {
     .banner-shape-top::before {
         top: 15%;
@@ -231,7 +216,7 @@
     }
 }
 
-/* ---------------- SEARCH ICON PSEUDO-CLASS ---------------- */
+/* search icon */
 .banner-search-icon {
     display: inline-flex;
     align-items: center;
@@ -257,7 +242,7 @@
     }
 }
 
-/* ---------------- STAR ICON PSEUDO-CLASS ---------------- */
+/* star icon */
 .banner-star-icon {
     display: inline-flex;
     align-items: center;
@@ -273,9 +258,7 @@
     line-height: 1;
 }
 
-/* ---------------- 3 FLOATING BADGES (Relative to Student Container) ---------------- */
-
-/* Card 1: UI/UX Design (Snug against student's left shoulder/collar) */
+/* badges */
 .banner-card-uiux {
     position: absolute;
     left: -40px;
@@ -305,7 +288,6 @@
     }
 }
 
-/* Card 2: Happy Students (Left of laptop/hands, hugging forearm) */
 .banner-card-students {
     position: absolute;
     left: -100px;
@@ -338,7 +320,6 @@
     }
 }
 
-/* Card 3: Learning Progress (Right of student's shoulder) */
 .banner-card-progress {
     position: absolute;
     right: -85px;
