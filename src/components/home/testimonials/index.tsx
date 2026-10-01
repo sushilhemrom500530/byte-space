@@ -6,11 +6,15 @@ import left_blue from "@/assets/left-blue.png";
 
 export default function TestimonialsSection() {
     return (
-        <section className="relative w-full overflow-hidden bg-white py-16 sm:py-20 lg:py-24 select-none">
-            <div className="absolute -top-32 -right-20 w-[450px] sm:w-[650px] h-[450px] sm:h-[650px] bg-[#D4FB20]/25 rounded-full blur-[100px] pointer-events-none -z-0" />
-            <div className="absolute -bottom-32 -left-20 w-[400px] sm:w-[550px] h-[400px] sm:h-[550px] bg-primary/15 rounded-full blur-[100px] pointer-events-none -z-0" />
-
-            <div className="relative z-10 custom-container">
+        <section
+            style={{
+                "--left-blue": `url('${left_blue.src}')`,
+                "--right-yellow": `url('${right_yellow.src}')`,
+                "--center-yellow": `url('${center_yellow.src}')`,
+            } as React.CSSProperties}
+            className="testimonials-glow relative w-full overflow-hidden bg-white py-16 sm:py-20 lg:py-24 select-none"
+        >
+            <div className="testimonials-center-glow relative z-10 custom-container">
                 <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6 lg:gap-12 mb-12 sm:mb-16">
                     <div className="max-w-xl">
                         <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-neutral-950 tracking-tight leading-[1.18]">
