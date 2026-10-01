@@ -64,3 +64,72 @@ body {
 .text-color {
   @apply text-[#4F4F4F]
 }
+
+/* Testimonials Glow Background Pseudo Classes */
+.testimonials-glow {
+  position: relative;
+}
+
+.testimonials-glow::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -40px;
+  width: 735px;
+  height: 675px;
+  max-width: 60vw;
+  background-image: var(--left-blue);
+  background-repeat: no-repeat;
+  background-size: contain;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.testimonials-glow::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -40px;
+  width: 638px;
+  height: 784px;
+  max-width: 50vw;
+  background-image: var(--right-yellow);
+  background-repeat: no-repeat;
+  background-size: contain;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.testimonials-center-glow::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -60px;
+  width: 752px;
+  height: 574px;
+  max-width: 70vw;
+  background-image: var(--center-yellow);
+  background-repeat: no-repeat;
+  background-size: contain;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@media (max-width: 768px) {
+  .testimonials-glow::before {
+    width: 380px;
+    height: 350px;
+    bottom: -20px;
+  }
+  .testimonials-glow::after {
+    width: 320px;
+    height: 390px;
+    top: -20px;
+  }
+  .testimonials-center-glow::before {
+    width: 380px;
+    height: 290px;
+    top: -30px;
+  }
+}

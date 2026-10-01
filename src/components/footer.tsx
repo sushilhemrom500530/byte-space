@@ -50,9 +50,9 @@ export default function Footer() {
                             />
                             <button
                                 type="submit"
-                                className="h-11 sm:h-12 px-7 rounded-full bg-secondary text-[#111111] font-semibold text-sm hover:brightness-95 active:scale-95 transition-all shadow-sm cursor-pointer whitespace-nowrap"
+                                className="h-11 sm:h-12 px-7 rounded-full bg-secondary text-[#111111] font-semibold text-sm hover:brightness-95 transition-all cursor-pointer whitespace-nowrap"
                             >
-                                Search
+                                Subscribe
                             </button>
                         </form>
 
