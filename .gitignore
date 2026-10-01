@@ -25,10 +25,10 @@
 *.pem
 
 # env
-.env.local.*
 .env
+.env.*
 .env.local
-.env*
+.env.local.*
 
 # debug
 npm-debug.log*
@@ -43,5 +43,4 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
-config.bat
+next-env.d.ts 
