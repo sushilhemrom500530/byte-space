@@ -77,11 +77,10 @@ export default function DiscoverSection() {
                                 key={tag}
                                 type="button"
                                 onClick={() => setActiveTag(tag)}
-                                className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer ${
-                                    isActive
-                                        ? "bg-secondary text-black font-semibold shadow-xs"
-                                        : "bg-[#F6F6F7] text-[#52525B] hover:text-black hover:bg-[#EBEBED]"
-                                }`}
+                                className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer ${isActive
+                                    ? "bg-secondary text-black font-semibold shadow-xs"
+                                    : "bg-[#F6F6F7] text-[#52525B] hover:text-black hover:bg-[#EBEBED]"
+                                    }`}
                             >
                                 {tag}
                             </button>
