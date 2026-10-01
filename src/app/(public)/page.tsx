@@ -1,3 +1,4 @@
+import BannerSection from "@/components/home/banner";
 import DiscoverSection from "@/components/home/discover";
 import ExploreSection from "@/components/home/explore";
 import GrowthSection from "@/components/home/growth";
@@ -7,7 +8,8 @@ import TestimonialsSection from "@/components/home/testimonials";
 
 export default function Home() {
   return (
-    <main className="mt-40">
+    <main className="w-full">
+      <BannerSection />
       <ShareHolderSection />
       <DiscoverSection />
       <ExploreSection />
