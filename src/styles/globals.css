@@ -133,3 +133,119 @@ body {
     top: -30px;
   }
 }
+
+/* Growth Section Glow Background Pseudo Classes (Exact Figma Artboard Layout) */
+.growth-section {
+  position: relative;
+}
+
+.growth-glow-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.growth-glow-top::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1025px;
+  height: 711px;
+  background-image: var(--growth-top-yellow);
+  background-repeat: no-repeat;
+  background-size: contain;
+  pointer-events: none;
+}
+
+.growth-glow-top::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 669px;
+  height: 719px;
+  background-image: var(--growth-right-blue);
+  background-repeat: no-repeat;
+  background-size: contain;
+  pointer-events: none;
+}
+
+.growth-glow-mid::before {
+  content: "";
+  position: absolute;
+  top: 15%;
+  left: 0;
+  width: 669px;
+  height: 1217px;
+  background-image: var(--growth-center-blue);
+  background-repeat: no-repeat;
+  background-size: contain;
+  pointer-events: none;
+}
+
+.growth-glow-bottom::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 425px;
+  height: 554px;
+  background-image: var(--growth-bottom-yellow);
+  background-repeat: no-repeat;
+  background-size: contain;
+  pointer-events: none;
+}
+
+.growth-glow-bottom::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 758px;
+  height: 712px;
+  background-image: var(--growth-bottom-blue);
+  background-repeat: no-repeat;
+  background-size: contain;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .growth-glow-top::before {
+    width: 500px;
+    height: 500px;
+    top: -150px;
+    left: -120px;
+  }
+  .growth-glow-top::after {
+    width: 500px;
+    height: 500px;
+    top: -150px;
+    left: auto;
+    right: -120px;
+  }
+  .growth-glow-mid::before {
+    width: 500px;
+    height: 500px;
+    top: 25%;
+    left: -150px;
+  }
+  .growth-glow-bottom::before {
+    width: 360px;
+    height: 360px;
+    top: auto;
+    bottom: -60px;
+    left: -100px;
+  }
+  .growth-glow-bottom::after {
+    width: 500px;
+    height: 500px;
+    top: auto;
+    bottom: -80px;
+    left: auto;
+    right: -120px;
+  }
+}
